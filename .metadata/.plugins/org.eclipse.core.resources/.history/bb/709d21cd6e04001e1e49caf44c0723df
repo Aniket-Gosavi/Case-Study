@@ -1,0 +1,17 @@
+package com.aniket.model;
+
+import java.util.Date;
+
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "traindetails")
+public class TrainDetails {
+	private String name;
+	private int trainNo;
+	private String boardingStation;
+	private String destination;
+	private Date departure;
+	private Date Arrival;
+
+
+}

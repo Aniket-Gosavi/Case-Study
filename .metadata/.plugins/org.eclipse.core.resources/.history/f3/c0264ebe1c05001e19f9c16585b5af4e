@@ -1,0 +1,10 @@
+package com.aniket.service;
+
+import java.util.List;
+
+import com.aniket.model.TrainDetails;
+
+public interface TrainServiceImpl {
+	TrainDetails addTrain();
+	List<TrainDetails> showTrains();
+}

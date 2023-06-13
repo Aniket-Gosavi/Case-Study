@@ -1,0 +1,7 @@
+package com.aniket.service;
+
+import com.aniket.model.TrainDetails;
+
+public interface TrainServiceImpl {
+	TrainDetails addTrain();
+}

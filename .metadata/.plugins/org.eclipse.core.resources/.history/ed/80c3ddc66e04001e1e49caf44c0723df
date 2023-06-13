@@ -1,0 +1,64 @@
+package com.aniket.model;
+
+import java.util.Date;
+
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "traindetails")
+public class TrainDetails {
+	private String name;
+	private int trainNo;
+	private String boardingStation;
+	private String destination;
+	private Date departure;
+	private Date Arrival;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public String getDestination() {
+		return destination;
+	}
+
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
+
+	public Date getDeparture() {
+		return departure;
+	}
+
+	public void setDeparture(Date departure) {
+		this.departure = departure;
+	}
+
+	public Date getArrival() {
+		return arrival;
+	}
+
+	public void setArrival(Date arrival) {
+		this.arrival = arrival;
+	}
+
+	public TrainDetails(String name, int trainNumber, String boarding, String destination, Date departure,
+			Date arrival) {
+		super();
+		this.name = name;
+		this.trainNumber = trainNumber;
+		this.boarding = boarding;
+		this.destination = destination;
+		this.departure = departure;
+		this.arrival = arrival;
+	}
+
+	public TrainDetails() {
+		super();
+	}
+
+}

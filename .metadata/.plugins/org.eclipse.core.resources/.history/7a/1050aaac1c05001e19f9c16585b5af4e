@@ -1,0 +1,23 @@
+package com.aniket.service;
+
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+
+import com.aniket.model.TrainDetails;
+
+public class TrainService implements TrainServiceImpl{
+
+	@Override
+	public TrainDetails addTrain() {
+		TrainDetails save = trepo.save(td);
+		return ResponseEntity.ok(save);
+	}
+
+	@Override
+	public List<TrainDetails> showTrains() {
+		
+		return null;
+	}
+
+}

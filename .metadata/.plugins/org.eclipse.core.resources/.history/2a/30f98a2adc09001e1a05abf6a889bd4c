@@ -1,0 +1,5 @@
+package com.aniket.repository;
+
+public interface BookingRepo {
+
+}

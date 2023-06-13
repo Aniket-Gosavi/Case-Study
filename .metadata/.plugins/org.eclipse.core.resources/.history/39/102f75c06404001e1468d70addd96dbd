@@ -1,0 +1,9 @@
+package com.aniket.repository;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import com.aniket.model.TrainDetails;
+
+public interface TrainRepo extends MongoRepository<TrainDetails, Integer>{
+
+}
