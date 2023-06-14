@@ -1,0 +1,15 @@
+
+a
+java:S1452 "&Remove usage of generic wildcard type.(Áß­ÿÿÿÿÿ8Ğ™Å‹1H”RCRITICALZ
+CODE_SMELL
+x
+java:S4684"@Replace this persistent entity with a simple POJO or DTO object.(—Ğ´K8“¶Å‹1H‚RCRITICALZVULNERABILITY
+a
+java:S1452"&Remove usage of generic wildcard type.(­šëÌÿÿÿÿÿ8Îä“Å‹1HŒRCRITICALZ
+CODE_SMELL
+[
+java:S1452"&Remove usage of generic wildcard type.(—Ğ´K8öÅ‹1HŠRCRITICALZ
+CODE_SMELL
+a
+java:S1452%"&Remove usage of generic wildcard type.(´¨Ëûÿÿÿÿ8¢ÂŸÅ‹1H–RCRITICALZ
+CODE_SMELL

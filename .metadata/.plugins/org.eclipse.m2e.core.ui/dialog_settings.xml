@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\Aniket\Documents\Case Study\spring-boot-login-mongodb-master"/>
 			<item value="C:\Users\Aniket\Documents\akshada\ViewDetail"/>
 		</list>
 		<list key="projectNameTemplate">

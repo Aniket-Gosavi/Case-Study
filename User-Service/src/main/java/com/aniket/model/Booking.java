@@ -17,7 +17,9 @@ public class Booking {
 	private int id;
 	private String firstName;
 	private String lastName;
+	private String trainName;
 	private String source;
 	private String destination;
 	private int numberOfTravellers;
+	
 }
