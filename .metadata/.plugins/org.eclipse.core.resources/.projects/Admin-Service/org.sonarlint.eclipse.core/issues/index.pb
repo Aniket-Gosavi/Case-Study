@@ -7,3 +7,5 @@ b
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 h
 8src/main/java/com/aniket/controller/TrainController.java,4\1\411307cb42003821651786f14b2fc6b7cc60d9dd
+`
+0src/main/java/com/aniket/model/TrainDetails.java,8\0\80ebcf25ecfeb13c1e5ff341e4da60eceec992fd

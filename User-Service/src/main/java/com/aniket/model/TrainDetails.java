@@ -10,17 +10,7 @@ public class TrainDetails {
 	private String boardingStation;
 	private String destination;
 	private String timingAndDate;
-
-	public TrainDetails(int id, String name, int trainNo, String boardingStation, String destination,
-			String timingAndDate) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.trainNo = trainNo;
-		this.boardingStation = boardingStation;
-		this.destination = destination;
-		this.timingAndDate = timingAndDate;
-	}
+	private double fair;
 
 	public int getId() {
 		return id;
@@ -68,6 +58,26 @@ public class TrainDetails {
 
 	public void setTimingAndDate(String timingAndDate) {
 		this.timingAndDate = timingAndDate;
+	}
+
+	public double getFair() {
+		return fair;
+	}
+
+	public void setFair(double fair) {
+		this.fair = fair;
+	}
+
+	public TrainDetails(int id, String name, int trainNo, String boardingStation, String destination,
+			String timingAndDate, double fair) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.trainNo = trainNo;
+		this.boardingStation = boardingStation;
+		this.destination = destination;
+		this.timingAndDate = timingAndDate;
+		this.fair = fair;
 	}
 
 	public TrainDetails() {

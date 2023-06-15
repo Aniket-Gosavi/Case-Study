@@ -16,7 +16,6 @@ import com.aniket.model.TrainDetails;
 import com.aniket.service.TrainService;
 
 @RestController
-@RequestMapping("admin")
 public class TrainController {
 	
 	@Autowired
@@ -39,8 +38,8 @@ public class TrainController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<?> deleteTrain(@PathVariable int id) throws ResourceNotFoundException{
-		return ResponseEntity.ok(ts.deleteTrain(id));
+	public String deleteTrain(@PathVariable int id) throws ResourceNotFoundException{
+		return ts.deleteTrain(id);
 	}
 
 }

@@ -1,5 +1,0 @@
-package com.aniket.exception;
-
-public class GlobalExceptionHandler {
-
-}

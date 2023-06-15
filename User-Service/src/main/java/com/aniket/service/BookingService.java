@@ -1,6 +1,8 @@
 package com.aniket.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -45,7 +47,7 @@ public class BookingService implements UserServiceImpl{
 
 	@Override
 	public Booking showBookingByName(String name) throws ResourceNotFoundException {
-		Booking book = brepo.findAllByName(name);
+		Booking book = brepo.findAllByFirstName(name);
 		if(book == null) {
 			log.info("booking not found by the given name "+name);
 			throw new ResourceNotFoundException("not found");
@@ -56,8 +58,21 @@ public class BookingService implements UserServiceImpl{
 
 	@Override
 	public Booking bookTrain(Booking book) {
-		Booking bk = brepo.save(book); 
+		Map<String, Double> tt = getMap();
+		String trainname = book.getTrainName();
+		double fair = tt.get(trainname);
+		book.setFair(fair * book.getNumberOfTravellers());
+		Booking bk = brepo.save(book);
 		return bk;
 	}
-
+	
+	public Map getMap() {
+		Map<String, Double> trainTickets = new HashMap<>();
+	    trainTickets.put("Duranto", 400.00);
+	    trainTickets.put("Jhelam", 300.00);
+	    trainTickets.put("Rajdhani", 180.00);
+	    trainTickets.put("Vande Bharat", 500.00);
+	    trainTickets.put("shatabdi", 600.00);
+	    return trainTickets;
+	}
 }

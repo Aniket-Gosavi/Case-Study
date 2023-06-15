@@ -6,6 +6,6 @@ import com.aniket.model.Booking;
 
 public interface BookingRepo extends MongoRepository<Booking, Integer> {
 	
-	Booking findAllByName(String name);
+	Booking findAllByFirstName(String name);
 
 }
