@@ -34,7 +34,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/findbyname/{name}")
-	public ResponseEntity<?> findById(@PathVariable String name) throws ResourceNotFoundException {
+	public ResponseEntity<?> findByName(@PathVariable String name) throws ResourceNotFoundException {
 		return ResponseEntity.ok(bk.showBookingByName(name));
 	}
 

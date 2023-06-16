@@ -17,8 +17,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import security.jwt.jwt.AuthEntryPointJwt;
 import security.jwt.jwt.AuthTokenFilter;
 import security.jwt.services.UserDetailsServiceImpl;
-import security.proxy.CourseProxy;
-
 
 
 

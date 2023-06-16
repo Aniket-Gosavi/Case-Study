@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aniket.exception.ResourceNotFoundException;
+
+import mailservice.EmailServiceImpl;
 import security.pojo.TrainDetails;
 import security.proxy.AdminProxy;
 
@@ -27,6 +29,9 @@ public class AdminController {
 
 	@Autowired
 	private AdminProxy adminproxy;
+	
+	@Autowired
+	private EmailServiceImpl esi;
 
 
 	@GetMapping(value = "/show", produces = "application/json")
@@ -39,6 +44,7 @@ public class AdminController {
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<?> addTrain(@RequestBody TrainDetails td,
 			@RequestHeader("Authorization") String authorization) {
+		esi.sendSimpleMail("saratehrishikesh17@gmail.com", "This is a testing mail sent form Spring boot app", "testing");
 		return adminproxy.addtrain(td, authorization);
 	}
 	

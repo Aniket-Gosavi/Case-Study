@@ -16,6 +16,8 @@ import com.aniket.model.TrainDetails;
 import com.aniket.repository.BookingRepo;
 import com.aniket.repository.TrainRepo;
 
+import mailservice.EmailServiceImpl;
+
 @Service
 public class BookingService implements UserServiceImpl{
 	
@@ -27,6 +29,8 @@ public class BookingService implements UserServiceImpl{
 	@Autowired
 	private TrainRepo trepo;
 
+	@Autowired
+	private EmailServiceImpl esi;
 
 	@Override
 	public List<TrainDetails> showTrains() {
@@ -58,11 +62,20 @@ public class BookingService implements UserServiceImpl{
 
 	@Override
 	public Booking bookTrain(Booking book) {
+		TrainDetails td = trepo.findByName(book.getTrainName().toLowerCase());
 		Map<String, Double> tt = getMap();
 		String trainname = book.getTrainName();
 		double fair = tt.get(trainname);
 		book.setFair(fair * book.getNumberOfTravellers());
 		Booking bk = brepo.save(book);
+		String body = "Hello "+book.getFirstName()+" "+book.getLastName()+" ,We have received your booking for ID:"+book.getId()+""
+				+ "\n Boarding Station: "+book.getSource()+""
+				+ "\n Destination: "+book.getDestination()+""
+				+ "\n Train Name: "+book.getTrainName()+""+
+				"\n Train Timing And Date: "+td.getTimingAndDate()+
+				"\n Please Proceed to make payment for the Total Amount of Rs "+bk.getFair();
+		esi.sendSimpleMail(book.getEmail(), body, "Booking Details");
+		log.info("Booking successfully done for ID"+book.getId());
 		return bk;
 	}
 	

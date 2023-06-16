@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Document
+@Document(collection = "Booking")
 public class Booking {
 
 	@Id
@@ -16,11 +16,26 @@ public class Booking {
 	private int id;
 	private String firstName;
 	private String lastName;
+	private String email;
 	private String trainName;
 	private String source;
 	private String destination;
 	private int numberOfTravellers;
 	private double fair;
+
+	public Booking(@NotEmpty int id, String firstName, String lastName, String email, String trainName, String source,
+			String destination, int numberOfTravellers, double fair) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.trainName = trainName;
+		this.source = source;
+		this.destination = destination;
+		this.numberOfTravellers = numberOfTravellers;
+		this.fair = fair;
+	}
 
 	public int getId() {
 		return id;
@@ -44,6 +59,14 @@ public class Booking {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getTrainName() {
@@ -84,23 +107,6 @@ public class Booking {
 
 	public void setFair(double fair) {
 		this.fair = fair;
-	}
-
-	public Booking(@NotEmpty int id, String firstName, String lastName, String trainName, String source,
-			String destination, int numberOfTravellers, double fair) {
-		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.trainName = trainName;
-		this.source = source;
-		this.destination = destination;
-		this.numberOfTravellers = numberOfTravellers;
-		this.fair = fair;
-	}
-
-	public Booking() {
-		super();
 	}
 
 }

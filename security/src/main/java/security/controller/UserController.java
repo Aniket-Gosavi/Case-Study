@@ -8,51 +8,43 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import security.pojo.Admission;
-import security.pojo.Associate;
-import security.pojo.Course;
-import security.proxy.AssociateProxy;
-import security.proxy.CourseProxy;
+import com.aniket.exception.ResourceNotFoundException;
+import security.proxy.UserProxy;
 
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
 
 	@Autowired
-	private CourseProxy courseproxy;
-
-	@Autowired
-	private AssociateProxy associateproxy;
-
-
-//	===================================Course Service ======================================================================================================================================
-
-	@GetMapping(value = "/course/viewByCourseId/{courseId}", produces = "application/json")
+	private UserProxy userproxy;
+	
+	@PostMapping(value = "/book",produces = "application/json")
 	@PreAuthorize("hasRole('USER')")
-	public ResponseEntity<Course> viewByCourseId(@PathVariable("courseId") String courseId,
-			@RequestHeader("Authorization") String authorization) {
-		return courseproxy.viewByCourseId(courseId, authorization);
+	public ResponseEntity<?> bookTrain(@RequestBody security.pojo.Booking book,@RequestHeader("Authorization") String authorization) {
+		return userproxy.bookTrain(book, authorization);
 	}
 
-//	===================================Associate Service ======================================================================================================================================
-
-	@GetMapping(value = "/associate/viewByAssociateId/{associateId}", produces = "application/json")
+	@GetMapping(value = "/show",produces = "application/json")
 	@PreAuthorize("hasRole('USER')")
-	public ResponseEntity<Associate> viewByAssociateId(@PathVariable String associateId,
-			@RequestHeader("Authorization") String authorization) {
-		return associateproxy.viewByAssociateId(associateId, authorization);
+	public ResponseEntity<?> showTrain(@RequestHeader("Authorization") String authorization) {
+		return userproxy.showTrain(authorization);
 	}
 
-	@PutMapping(value = "/associate/updateAssociate/{associateId}/{associateAddress}", produces = "application/json")
+	@GetMapping(value = "/findbyId/{id}",produces = "application/json")
 	@PreAuthorize("hasRole('USER')")
-	public ResponseEntity<Associate> updateAssociate(@PathVariable String associateId,
-			@PathVariable String associateAddress, @RequestHeader("Authorization") String authorization) {
-		return associateproxy.updateAssociate(associateId, associateAddress, authorization);
+	public ResponseEntity<?> findById(@PathVariable int id,@RequestHeader("Authorization") String authorization) throws ResourceNotFoundException {
+		return userproxy.findById(id,authorization);
+	}
+	
+	@GetMapping(value = "/findbyname/{name}",produces = "application/json")
+	@PreAuthorize("hasRole('USER')")
+	public ResponseEntity<?> findById(@PathVariable String name,@RequestHeader("Authorization") String authorization) throws ResourceNotFoundException {
+		return userproxy.findByName(name,authorization);
 	}
 
 }
