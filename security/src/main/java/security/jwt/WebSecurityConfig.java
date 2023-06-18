@@ -13,6 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import security.jwt.jwt.AuthEntryPointJwt;
 import security.jwt.jwt.AuthTokenFilter;
@@ -22,11 +23,23 @@ import security.jwt.services.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
+@EnableWebMvc
 @EnableGlobalMethodSecurity(
-    // securedEnabled = true,
-    // jsr250Enabled = true,
     prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	public static final String[] PUBLIC_URLS= {
+			"/api/test/**",
+			"/api/user/**",
+			"/api/admin/**",
+			"/v3/api-docs",
+			"/api/auth/**",
+			"/v2/api-docs",
+			"/swagger-resources/**",
+			"/swagger-ui/**",
+			"/webjars/**"
+	};
+	
   @Autowired
   UserDetailsServiceImpl userDetailsService;
   @Autowired
@@ -54,8 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     http.cors().and().csrf().disable()
       .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
       .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-      .authorizeRequests().antMatchers("/api/auth/**").permitAll()
-      .antMatchers("/api/test/**,/api/user/**,/api/admin/**").permitAll()
+      .authorizeRequests().antMatchers(PUBLIC_URLS).permitAll()
       .anyRequest().authenticated()
      ;
     http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

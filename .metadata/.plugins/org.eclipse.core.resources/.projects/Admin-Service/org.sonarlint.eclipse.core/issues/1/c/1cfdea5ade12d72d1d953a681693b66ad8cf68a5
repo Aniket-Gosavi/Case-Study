@@ -1,13 +1,0 @@
-
-ˆ
-java:S1488"\Immediately return this expression instead of assigning it to the temporary variable "save".(’Ñ»‹HùRMINORZ
-CODE_SMELL
-o
-java:S2629&"7Use the built-in formatting to construct this argument.(€ÊÔ’þÿÿÿÿ8ù§Û¢‹1HüRMAJORZ
-CODE_SMELL
-y
-java:S3457&"AFormat specifiers should be used instead of string concatenation.(€ÊÔ’þÿÿÿÿ8ù§Û¢‹1HýRMAJORZ
-CODE_SMELL
-ˆ
-java:S1488+"\Immediately return this expression instead of assigning it to the temporary variable "save".(àé´»HþRMINORZ
-CODE_SMELL

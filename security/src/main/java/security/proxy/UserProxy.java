@@ -24,5 +24,8 @@ public interface UserProxy {
 	
 	@GetMapping(value = "/findbyname/{name}",produces = "application/json")
 	public ResponseEntity<?> findByName(@PathVariable String name,@RequestHeader("Authorization") String authorization) throws ResourceNotFoundException;
+	
+	@GetMapping(value = "/findbysourceanddestination/{source}/{destination}", produces = "application/json")
+	public ResponseEntity<?> findBySourceAndDestination(@PathVariable String source, @PathVariable String destination,@RequestHeader("Authorization") String authorization) throws ResourceNotFoundException;
 
 }

@@ -46,5 +46,11 @@ public class UserController {
 	public ResponseEntity<?> findById(@PathVariable String name,@RequestHeader("Authorization") String authorization) throws ResourceNotFoundException {
 		return userproxy.findByName(name,authorization);
 	}
+	
+	@GetMapping(value = "/findbysourceanddestination/{source}/{destination}",produces = "application/json")
+	@PreAuthorize("hasRole('USER')")
+	public ResponseEntity<?> findBySourceAndDestination(@PathVariable String source, @PathVariable String destination,@RequestHeader("Authorization") String authorization) throws ResourceNotFoundException {
+		return userproxy.findBySourceAndDestination(source, destination, authorization);
+	}
 
 }

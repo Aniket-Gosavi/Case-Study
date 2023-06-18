@@ -1,6 +1,0 @@
-server.port=9000
-spring.application.name=gatewayservice
-
-spring.cloud.gateway.routes[0].id=adminservice
-spring.cloud.gateway.routes[0].uri=http://localhost:8001
-spring.cloud.gateway.routes[0].predicates[0]=Path=/employee/**
