@@ -1,5 +1,6 @@
 package security.proxy;
 
+import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +11,11 @@ import org.springframework.web.bind.annotation.RequestHeader;
 
 import com.aniket.exception.ResourceNotFoundException;
 
+import security.LoadBalancerConfiguration;
+
 @FeignClient(value="User-Service",url="http://localhost:8002")
+@LoadBalancerClient(name = "User-Service",
+configuration=LoadBalancerConfiguration.class)
 public interface UserProxy {
 	
 	@PostMapping(value = "/book" , produces = "application/json")

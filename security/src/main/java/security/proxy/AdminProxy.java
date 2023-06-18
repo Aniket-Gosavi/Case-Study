@@ -2,6 +2,7 @@ package security.proxy;
 
 import java.util.List;
 
+import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
 import org.springframework.cloud.openfeign.FeignClient;
 
 import org.springframework.http.ResponseEntity;
@@ -15,10 +16,13 @@ import org.springframework.web.bind.annotation.RequestHeader;
 
 import com.aniket.exception.ResourceNotFoundException;
 
+import security.LoadBalancerConfiguration;
 import security.pojo.TrainDetails;
 
 
 @FeignClient(value="Admin-Service",url="http://localhost:8001")
+@LoadBalancerClient(name = "Admin-Service",
+configuration=LoadBalancerConfiguration.class)
 public interface AdminProxy {
 	
 	@GetMapping(value="/show",produces = "application/json")
