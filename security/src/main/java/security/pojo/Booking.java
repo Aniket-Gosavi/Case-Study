@@ -1,37 +1,29 @@
 package security.pojo;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotEmpty;
 
-@Document
+@Document(collection = "Booking")
 public class Booking {
 
+	@Transient
+	public static final String sequenceName = "BookingSequence";
+
 	@Id
-	@javax.validation.constraints.NotEmpty
+	@NotEmpty
 	private int id;
+	@NotEmpty(message = "Name shoud not be empty")
 	private String firstName;
 	private String lastName;
+	@NotEmpty(message = "Email shoud not be empty")
 	private String email;
-	private String trainName;
-	private String source;
-	private String destination;
+	private int trainNo;
+	@NotEmpty(message = "Travellers shoud not be empty")
 	private int numberOfTravellers;
 	private double fair;
-
-	public Booking(@javax.validation.constraints.NotEmpty int id, String firstName, String lastName, String email, String trainName, String source,
-			String destination, int numberOfTravellers, double fair) {
-		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.trainName = trainName;
-		this.source = source;
-		this.destination = destination;
-		this.numberOfTravellers = numberOfTravellers;
-		this.fair = fair;
-	}
 
 	public int getId() {
 		return id;
@@ -65,28 +57,12 @@ public class Booking {
 		this.email = email;
 	}
 
-	public String getTrainName() {
-		return trainName;
+	public int getTrainNo() {
+		return trainNo;
 	}
 
-	public void setTrainName(String trainName) {
-		this.trainName = trainName;
-	}
-
-	public String getSource() {
-		return source;
-	}
-
-	public void setSource(String source) {
-		this.source = source;
-	}
-
-	public String getDestination() {
-		return destination;
-	}
-
-	public void setDestination(String destination) {
-		this.destination = destination;
+	public void setTrainNo(int trainNo) {
+		this.trainNo = trainNo;
 	}
 
 	public int getNumberOfTravellers() {
@@ -103,6 +79,23 @@ public class Booking {
 
 	public void setFair(double fair) {
 		this.fair = fair;
+	}
+
+	public Booking(@NotEmpty int id, @NotEmpty(message = "Name shoud not be empty") String firstName, String lastName,
+			@NotEmpty(message = "Email shoud not be empty") String email, int trainNo,
+			@NotEmpty(message = "Travellers shoud not be empty") int numberOfTravellers, double fair) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.trainNo = trainNo;
+		this.numberOfTravellers = numberOfTravellers;
+		this.fair = fair;
+	}
+
+	public Booking() {
+		super();
 	}
 
 }

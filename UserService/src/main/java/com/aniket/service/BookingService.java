@@ -64,34 +64,25 @@ public class BookingService implements UserServiceImpl{
 
 	@Override
 	public Booking bookTrain(Booking book) {
-		TrainDetails td = trepo.findByName(book.getTrainName().toLowerCase());
+		TrainDetails traindetails = trepo.findByTrainNo(book.getTrainNo());
 		
 		book.setId(seq.getSequenceNum(Booking.sequenceName));
-		Map<String, Double> tt = getMap();
-		String trainname = book.getTrainName();
-		double fair = tt.get(trainname);
+		double fair = traindetails.getFair();
 		book.setFair(fair * book.getNumberOfTravellers());
 		Booking bk = brepo.save(book);
+		traindetails.setTicketsAvailable(traindetails.getTicketsAvailable() - book.getNumberOfTravellers());
+		trepo.save(traindetails);
 		String body = "Hello "+book.getFirstName()+" "+book.getLastName()+" ,We have received your booking for ID:"+book.getId()+""
-				+ "\n Boarding Station: "+book.getSource()+""
-				+ "\n Destination: "+book.getDestination()+""
-				+ "\n Train Name: "+book.getTrainName()+""+
-				"\n Train Timing And Date: "+td.getTimingAndDate()+
+				+ "\n Boarding Station: "+traindetails.getBoardingStation()+""
+				+ "\n Destination: "+traindetails.getDestination()+""
+				+ "\n Train Name: "+traindetails.getName()+""+
+				"\n Train Timing And Date: "+traindetails.getTimingAndDate()+
 				"\n Please Proceed to make payment for the Total Amount of Rs "+bk.getFair();
 		esi.sendSimpleMail(book.getEmail(), body, "Booking Details");
 		log.info("Booking successfully done for ID"+book.getId());
 		return bk;
 	}
 	
-	public Map getMap() {
-		Map<String, Double> trainTickets = new HashMap<>();
-	    trainTickets.put("duranto", 400.00);
-	    trainTickets.put("jhelam", 300.00);
-	    trainTickets.put("rajdhani", 180.00);
-	    trainTickets.put("vande bharat", 500.00);
-	    trainTickets.put("shatabdi", 600.00);
-	    return trainTickets;
-	}
 
 
 	@Override

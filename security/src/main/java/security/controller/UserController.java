@@ -23,31 +23,31 @@ public class UserController {
 	
 	@PostMapping(value = "/book",produces = "application/json")
 	@PreAuthorize("hasRole('USER')")
-	public ResponseEntity<?> bookTrain(@RequestBody security.pojo.Booking book,@RequestHeader("Authorization") String authorization) {
+	public ResponseEntity<?> bookTrain(@RequestBody security.pojo.Booking book,@RequestHeader(value = "Authorization", required = false) String authorization) {
 		return userproxy.bookTrain(book, authorization);
 	}
 
 	@GetMapping(value = "/show",produces = "application/json")
 	@PreAuthorize("hasRole('USER')")
-	public ResponseEntity<?> showTrain(@RequestHeader("Authorization") String authorization) {
+	public ResponseEntity<?> showTrain(@RequestHeader(value = "Authorization", required = false) String authorization) {
 		return userproxy.showTrain(authorization);
 	}
 
 	@GetMapping(value = "/findbyId/{id}",produces = "application/json")
 	@PreAuthorize("hasRole('USER')")
-	public ResponseEntity<?> findById(@PathVariable int id,@RequestHeader("Authorization") String authorization) throws ResourceNotFoundException {
+	public ResponseEntity<?> findById(@PathVariable int id,@RequestHeader(value = "Authorization", required = false) String authorization) throws ResourceNotFoundException {
 		return userproxy.findById(id,authorization);
 	}
 	
 	@GetMapping(value = "/findbyname/{name}",produces = "application/json")
 	@PreAuthorize("hasRole('USER')")
-	public ResponseEntity<?> findById(@PathVariable String name,@RequestHeader("Authorization") String authorization) throws ResourceNotFoundException {
+	public ResponseEntity<?> findById(@PathVariable String name,@RequestHeader(value = "Authorization", required = false) String authorization) throws ResourceNotFoundException {
 		return userproxy.findByName(name,authorization);
 	}
 	
 	@GetMapping(value = "/findbysourceanddestination/{source}/{destination}",produces = "application/json")
 	@PreAuthorize("hasRole('USER')")
-	public ResponseEntity<?> findBySourceAndDestination(@PathVariable String source, @PathVariable String destination,@RequestHeader("Authorization") String authorization) throws ResourceNotFoundException {
+	public ResponseEntity<?> findBySourceAndDestination(@PathVariable String source, @PathVariable String destination,@RequestHeader(value = "Authorization", required = false) String authorization) throws ResourceNotFoundException {
 		return userproxy.findBySourceAndDestination(source, destination, authorization);
 	}
 

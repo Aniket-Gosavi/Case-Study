@@ -1,5 +1,7 @@
 package com.aniket.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,10 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.aniket.exception.ResourceNotFoundException;
 import com.aniket.model.Booking;
+import com.aniket.model.TrainDetails;
+import com.aniket.repository.TrainRepo;
 import com.aniket.service.BookingService;
 
 @RestController
 public class UserController {
+	
+	@Autowired
+	private TrainRepo trepo;
 
 	@Autowired
 	private BookingService bk;
@@ -24,12 +31,16 @@ public class UserController {
 	}
 
 	@GetMapping("/show")
-	public ResponseEntity<?> showTrain() {
+	public ResponseEntity<?> showTrain() throws ResourceNotFoundException {
+		List<TrainDetails> trainDetails = trepo.findAll();
+		if(trainDetails.isEmpty()) {
+			throw new ResourceNotFoundException("No Data Available to show");
+		}
 		return ResponseEntity.ok(bk.showTrains());
 	}
 
 	@GetMapping("/findbyId/{id}")
-	public ResponseEntity<?> findById(@PathVariable int id) throws ResourceNotFoundException {
+	public ResponseEntity<Booking> findById(@PathVariable int id) throws ResourceNotFoundException {
 		return ResponseEntity.ok(bk.showBookingById(id));
 	}
 	

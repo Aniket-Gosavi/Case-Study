@@ -32,30 +32,29 @@ public class AdminController {
 	@Autowired
 	private EmailServiceImpl esi;
 
-
 	@GetMapping(value = "/show", produces = "application/json")
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<List<TrainDetails>> viewAll(@RequestHeader("Authorization") String authorization) {
+	public ResponseEntity<List<TrainDetails>> viewAll(@RequestHeader(value = "Authorization", required = false) String authorization) {
 		return adminproxy.viewAll(authorization);
 	}
 	
 	@PostMapping(value = "/addtrain", produces = "application/json")
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<?> addTrain(@RequestBody TrainDetails td,
-			@RequestHeader("Authorization") String authorization) {
+			@RequestHeader(value = "Authorization", required = false) String authorization) {
 		esi.sendSimpleMail("saratehrishikesh17@gmail.com", "This is a testing mail sent form Spring boot app", "testing");
 		return adminproxy.addtrain(td, authorization);
 	}
 	
 	@PutMapping(value = "/updatetrain/{id}/{destination}" , produces = "application/json")
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<?> updateTrain(@PathVariable int id, @PathVariable String destination,@RequestHeader("Authorization") String authorization) throws ResourceNotFoundException{
+	public ResponseEntity<?> updateTrain(@PathVariable int id, @PathVariable String destination,@RequestHeader(value = "Authorization", required = false) String authorization) throws ResourceNotFoundException{
 		return adminproxy.updateTrain(id, destination, authorization);
 	}
 
 	@DeleteMapping(value = "/delete/{id}",produces = "application/json")
 	@PreAuthorize("hasRole('ADMIN')")
-	public String deleteTrain(@PathVariable int id,@RequestHeader("Authorization") String authorization) throws ResourceNotFoundException{
+	public String deleteTrain(@PathVariable int id,@RequestHeader(value = "Authorization", required = false) String authorization) throws ResourceNotFoundException{
 		return adminproxy.deleteTrain(id,authorization);
 	}
 	

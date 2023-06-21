@@ -1,17 +1,29 @@
 package com.aniket.model;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+
+@Data
 @Document(collection = "traindetails")
 public class TrainDetails {
+
+	@Id
+	@NotNull
 	private int id;
+	@NotEmpty(message = "Name shoud not be empty")
 	private String name;
+	@NotEmpty(message = "TrainNo shoud not be empty")
 	private int trainNo;
 	private String boardingStation;
 	private String destination;
 	private String timingAndDate;
 	private double fair;
-
+    private int ticketsAvailable;
+    
 	public int getId() {
 		return id;
 	}
@@ -68,8 +80,21 @@ public class TrainDetails {
 		this.fair = fair;
 	}
 
-	public TrainDetails(int id, String name, int trainNo, String boardingStation, String destination,
-			String timingAndDate, double fair) {
+	public int getTicketsAvailable() {
+		return ticketsAvailable;
+	}
+
+	public void setTicketsAvailable(int ticketsAvailable) {
+		this.ticketsAvailable = ticketsAvailable;
+	}
+
+	public TrainDetails() {
+		super();
+	}
+
+	public TrainDetails(@NotNull int id, @NotEmpty(message = "Name shoud not be empty") String name,
+			@NotEmpty(message = "TrainNo shoud not be empty") int trainNo, String boardingStation, String destination,
+			String timingAndDate, double fair, int ticketsAvailable) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -78,10 +103,7 @@ public class TrainDetails {
 		this.destination = destination;
 		this.timingAndDate = timingAndDate;
 		this.fair = fair;
-	}
-
-	public TrainDetails() {
-		super();
+		this.ticketsAvailable = ticketsAvailable;
 	}
 
 }
