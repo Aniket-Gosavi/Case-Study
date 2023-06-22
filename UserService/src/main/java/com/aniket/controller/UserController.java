@@ -15,6 +15,7 @@ import com.aniket.model.Booking;
 import com.aniket.model.TrainDetails;
 import com.aniket.repository.TrainRepo;
 import com.aniket.service.BookingService;
+import com.razorpay.RazorpayException;
 
 @RestController
 public class UserController {
@@ -53,5 +54,10 @@ public class UserController {
 	public ResponseEntity<?> findBySourceAndDestination(@PathVariable String source, @PathVariable String destination) throws ResourceNotFoundException {
 		return ResponseEntity.ok(bk.showBySourceAndDestination(source,destination));
 	}
+	
+	@PostMapping("/pay")
+	public String onlinePayment(@RequestBody Booking book) throws RazorpayException {
+		return bk.onlinePayment(book);
+ }
 
 }
