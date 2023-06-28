@@ -42,7 +42,6 @@ public class AdminController {
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<?> addTrain(@RequestBody TrainDetails td,
 			@RequestHeader(value = "Authorization", required = false) String authorization) {
-		esi.sendSimpleMail("saratehrishikesh17@gmail.com", "This is a testing mail sent form Spring boot app", "testing");
 		return adminproxy.addtrain(td, authorization);
 	}
 	
