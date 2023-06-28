@@ -1,0 +1,120 @@
+<ng-container *ngIf="cartData.items?.length > 0">
+  <div class="container">
+    <div class="card-table">
+      <div class="card-product">
+        <table class="table table-responsive">
+          <thead>
+            <tr>
+              <th>ProductId</th>
+              <th>Image</th>
+              <th>ProductName</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of cartData.items">
+              <td>{{ product.productId }}</td>
+              <td>
+                <img src="{{ product.images }}" />
+              </td>
+              <td class="style">{{ product.productName }}</td>
+              <div>
+                <td class="style">
+                  <div>
+                    <button
+                      class="decrease"
+                      (click)="onClickIncreaseQuant(product.productId)"
+                    >
+                      +</button
+                    >&nbsp;
+                    <input
+                      id="quantity"
+                      type="text"
+                      value="{{ product.quantity }}"
+                    />
+                    &nbsp;
+                    <button
+                      class="decrease"
+                      (click)="onClickDecreaseButton(product.productId)"
+                    >
+                      -
+                    </button>
+                  </div>
+                </td>
+              </div>
+              <td class="style">{{ product.price }}</td>
+              <td class="style">
+                <button
+                  mat-icon-button
+                  color="warn"
+                  (click)="onClickDelete(product.productId)"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <button
+                  id="emptyCart"
+                  mat-raised-button
+                  color="warn"
+                  (click)="onClickEmptyCart()"
+                >
+                  Empty Cart</button
+                >&nbsp;
+              </td>
+              <td>
+                <button
+                  id="emptyCart"
+                  mat-raised-button
+                  color="primary"
+                  (click)="goToHome()"
+                >
+                  Shop More</button
+                >&nbsp;
+              </td>
+              <td>
+                <button class="btn btn-success">
+                  Total:Rs.{{ cartData.totalPrice }}
+                </button>
+              </td>
+              <td>
+                <button
+                  id="emptyCart"
+                  mat-raised-button
+                  color="accent"
+                  (click)="navigateToAddress()"
+                >
+                  CheckOut
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="cartData.items?.length <= 0">
+  <div class="container">
+    <div class="card">
+      <h5 class="card-title">My Cart</h5>
+    </div>
+    <div class="center">
+      <img
+        src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90"
+        alt=""
+      />
+      <h4>Your cart is empty</h4>
+      <h6>Add Item to it now</h6>
+      <button mat-raised-button color="primary" (click)="onclickShopNow()">
+        Shop Now
+      </button>
+    </div>
+  </div>
+</ng-container>

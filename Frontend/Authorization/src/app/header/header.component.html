@@ -1,0 +1,162 @@
+<p>
+  <mat-toolbar color="primary">
+    <a
+      role="button"
+      style="text-decoration: none"
+      (click)="onClickElectronicShopping()"
+    >
+      <span style="color: white">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/4047/4047296.png"
+          height="70px"
+          width="50px"
+        />
+        Electronics Shopping</span
+      >
+    </a>
+    &nbsp;<button mat-raised-button color="primary" *ngIf="!isLoggedIn">
+      <div class="navbar-collapse">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              style="color: white"
+            >
+              User
+            </a>
+            <ul class="dropdown-menu dropdown-menu-light">
+              <li>
+                <a class="dropdown-item" href="#" routerLink="/signup"
+                  >SignUp</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="#" routerLink="/login">SignIn</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </button>
+  </mat-toolbar>
+  <mat-toolbar *ngIf="!isLoggedIn">
+    <button mat-raised-button routerLink="/front-page">Home</button>
+  </mat-toolbar>
+  <mat-toolbar *ngIf="isLoggedIn && !clickCart">
+    <a mat-raised-button routerLink="front-page">
+      <mat-icon>home</mat-icon>
+    </a>
+    <button mat-raised-button *ngIf="showAddProducts" routerLink="/products">
+      Products
+    </button>
+    <button mat-raised-button *ngIf="showProducts" routerLink="/add-product">
+      Add
+    </button>
+
+    &nbsp;<button mat-raised-button>
+      <div class="navbar-collapse">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              id="color"
+            >
+              Account
+            </a>
+            <ul class="dropdown-menu dropdown-menu-light">
+              <li>
+                <a class="dropdown-item" href="#" routerLink="/profile"
+                  >Profile</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="#" (click)="onLogout()"
+                  >Logout</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </button>
+
+    &nbsp;<button mat-raised-button>
+      <div class="navbar-collapse">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              id="color"
+            >
+              Type
+            </a>
+            <ul class="dropdown-menu dropdown-menu-light">
+              <li>
+                <a class="dropdown-item" href="home" (click)="getAll()">All</a>
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="filter('Desktop')">Desktop</a>
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="filter('Laptop Accessories')"
+                  >Laptop Accessories</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="filter('Washing Machine')"
+                  >Washing Machine</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="filter('Mobiles Accessories')"
+                  >Mobiles Accessories</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="filter('Laptops')">Laptops</a>
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="filter('Smart Wearable Tech')"
+                  >Smart Wearable Tech</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="filter('Tablet')">Tablet</a>
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="filter('Gaming Accessories')"
+                  >Gaming Accessories</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="filter('Mobiles')">Mobiles</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </button>
+    &nbsp;<a mat-raised-button *ngIf="showCart" (click)="onClickCart()">
+      <mat-icon style="font-size: 20px">add_shopping_cart</mat-icon></a
+    >&nbsp;
+    <div>
+      <input
+        class="styleSearch"
+        type="text"
+        placeholder="search products"
+        [(ngModel)]="searchTerm"
+        (keyup)="search($event)"
+      />
+    </div>
+    <mat-icon class="search-icon">search</mat-icon>
+  </mat-toolbar>
+</p>
