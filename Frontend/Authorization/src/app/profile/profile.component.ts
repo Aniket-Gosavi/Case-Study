@@ -63,9 +63,9 @@ export class ProfileComponent implements OnInit{
   password:'',
  };
 
- login(){
-  this.profileService.login(this.userCredentials).subscribe({(data:any)=>console.log(data)})
- }
+//  login(){
+//   this.profileService.login(this.userCredentials).subscribe({(data:any)=>console.log(data)})
+//  }
 
 }
 

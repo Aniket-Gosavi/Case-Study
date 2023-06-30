@@ -13,5 +13,6 @@ public interface BookingService {
 	Booking showBookingById(int id)throws ResourceNotFoundException;
 	Booking showBookingByName(String name) throws ResourceNotFoundException;
 	List<TrainDetails> showBySourceAndDestination(String source,String destination) throws ResourceNotFoundException;
+	Booking cancelTicket(int id)throws ResourceNotFoundException;
 	String onlinePayment(Booking book) throws RazorpayException;
 }

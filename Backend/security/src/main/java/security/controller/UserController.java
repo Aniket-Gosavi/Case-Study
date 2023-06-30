@@ -3,6 +3,7 @@ package security.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,6 +50,12 @@ public class UserController {
 	@PreAuthorize("hasRole('USER')")
 	public ResponseEntity<?> findBySourceAndDestination(@PathVariable String source, @PathVariable String destination,@RequestHeader(value = "Authorization", required = false) String authorization) throws ResourceNotFoundException {
 		return userproxy.findBySourceAndDestination(source, destination, authorization);
+	}
+	
+	@DeleteMapping("/cancelbooking/{id}")
+	@PreAuthorize("hasRole('USER')")
+	public ResponseEntity<?> cancelBooking(@PathVariable int id) throws ResourceNotFoundException {
+		return userproxy.cancelBooking(id);
 	}
 
 }

@@ -3,6 +3,7 @@ package security.proxy;
 import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,4 +34,6 @@ public interface UserProxy {
 	@GetMapping(value = "/findbysourceanddestination/{source}/{destination}", produces = "application/json")
 	public ResponseEntity<?> findBySourceAndDestination(@PathVariable String source, @PathVariable String destination,@RequestHeader("Authorization") String authorization) throws ResourceNotFoundException;
 
+	@DeleteMapping("/cancelbooking/{id}")
+	public ResponseEntity<?> cancelBooking(@PathVariable int id) throws ResourceNotFoundException;
 }

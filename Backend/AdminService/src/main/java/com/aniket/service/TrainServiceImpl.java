@@ -22,8 +22,8 @@ public class TrainServiceImpl implements TrainServiceI {
 
 	@Override
 	public TrainDetails addTrain(TrainDetails td) {
-		TrainDetails save = trepo.save(td);
-		return save;
+	TrainDetails traindetails = trepo.save(td);
+	return td;
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class TrainServiceImpl implements TrainServiceI {
 	public TrainDetails updateTrain(int id, String destination) throws ResourceNotFoundException {
 		Optional<TrainDetails> td = trepo.findById(id);
 		if(td.isEmpty()) {
-			log.warn("Train with the specified Id is not avvailable" +id);
+			log.warn("Train with the specified Id is not available" +id);
 			throw new ResourceNotFoundException("Train with the following Id Does not Exist " +id);
 		}
 		TrainDetails tds = td.get();

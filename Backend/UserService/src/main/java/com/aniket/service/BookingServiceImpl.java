@@ -114,4 +114,20 @@ public class BookingServiceImpl implements BookingService{
 		 System.out.println(order);
 		 return order.toString();
 	}
+
+
+	@Override
+	public Booking cancelTicket(int id) throws ResourceNotFoundException{
+		Optional<Booking> deleteBooking = brepo.findById(id);
+		if(deleteBooking.isEmpty()) {
+			throw new ResourceNotFoundException("Booking not fount by the given Id" +id);
+		}
+		Booking cancel = deleteBooking.get();
+		int trainno = cancel.getTrainNo();
+		TrainDetails td = trepo.findByTrainNo(trainno);
+		td.setTicketsAvailable(td.getTicketsAvailable() + cancel.getNumberOfTravellers());
+		trepo.save(td);
+		brepo.delete(cancel);
+		return cancel;
+	}
 }
