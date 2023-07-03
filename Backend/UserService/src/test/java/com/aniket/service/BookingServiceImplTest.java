@@ -21,7 +21,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class BookingServiceImplTest {
+class BookingServiceImplTest {
 
     @Mock
     private BookingRepo bookingRepo;
@@ -44,7 +44,7 @@ public class BookingServiceImplTest {
     }
 
     @Test
-    public void testShowTrains() {
+    void testShowTrains() {
         List<TrainDetails> trainList = new ArrayList<>();
         trainList.add(new TrainDetails());
 
@@ -58,7 +58,7 @@ public class BookingServiceImplTest {
     }
 
     @Test
-    public void testShowBookingById() throws ResourceNotFoundException {
+    void testShowBookingById() throws ResourceNotFoundException {
         int id = 1;
         Booking booking = new Booking();
 
@@ -72,7 +72,7 @@ public class BookingServiceImplTest {
     }
 
     @Test
-    public void testShowBookingByIdNotFound() {
+    void testShowBookingByIdNotFound() {
         int id = 1;
 
         when(bookingRepo.findById(id)).thenReturn(Optional.empty());
@@ -88,7 +88,7 @@ public class BookingServiceImplTest {
     }
 
     @Test
-    public void testShowBookingByName() throws ResourceNotFoundException {
+    void testShowBookingByName() throws ResourceNotFoundException {
         String name = "John Doe";
         Booking booking = new Booking();
 
@@ -102,7 +102,7 @@ public class BookingServiceImplTest {
     }
 
     @Test
-    public void testShowBookingByNameNotFound() {
+    void testShowBookingByNameNotFound() {
         String name = "John Doe";
 
         when(bookingRepo.findAllByFirstName(name)).thenReturn(null);
@@ -118,7 +118,7 @@ public class BookingServiceImplTest {
     }
 
     @Test
-    public void testBookTrain() {
+    void testBookTrain() {
         Booking booking = new Booking();
         booking.setTrainNo(123);
         TrainDetails trainDetails = new TrainDetails();
@@ -142,7 +142,7 @@ public class BookingServiceImplTest {
     }
 
     @Test
-    public void testShowBySourceAndDestination() throws ResourceNotFoundException {
+    void testShowBySourceAndDestination() throws ResourceNotFoundException {
         String source = "Station A";
         String destination = "Station B";
         List<TrainDetails> trainList = new ArrayList<>();
@@ -158,7 +158,7 @@ public class BookingServiceImplTest {
     }
 
     @Test
-    public void testShowBySourceAndDestinationNotFound() {
+    void testShowBySourceAndDestinationNotFound() {
         String source = "Station A";
         String destination = "Station B";
 

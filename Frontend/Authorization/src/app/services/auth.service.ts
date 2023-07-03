@@ -13,7 +13,7 @@ export class AuthService {
 
   registerUser(user:{username:any,email:any,roles:any[],password:any}):Observable<any>{
       console.log(user);
-      return this.httpClient.post<any>('http://localhost:8000/api/auth/signup',{
+      return this.httpClient.post<any>('http://localhost:9098/api/auth/signup',{
           username:user.username,
           email:user.email,
           roles:user.roles,
@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   login(login:{username:any,password:any}):Observable<any>{
-      return this.httpClient.post('http://localhost:8000/api/auth/signin',login);
+      return this.httpClient.post('http://localhost:9098/api/auth/signin',login);
   }
 
 }
