@@ -1,0 +1,61 @@
+<form #myForm="ngForm">
+    <h3>Search Train</h3>
+    <label for="source">Source</label><br />
+    <input
+      type="text"
+      name="source"
+      id="source"
+      [(ngModel)]="Source"
+      required
+      #Source="ngModel"
+      [ngClass]="{ 'is-invalid': Source.touched && Source.errors }"
+    />
+      <small *ngIf="Source.touched && Source.errors && Source.errors['required']">source is required</small>
+      <br>
+    <label for="destination">destination</label><br />
+    <input
+      type="text"
+      name="destination"
+      id="destination"
+      [(ngModel)]="Destination"
+      required
+      #Destination="ngModel"
+      [ngClass]="{ 'is-invalid': Destination.touched && Destination.errors }"
+    />
+      <small *ngIf="Destination.touched && Destination.errors && Destination.errors['required']">destination is required</small>
+      <br>
+<button mat-flat-button color="primary" class="w-20" (click)="searchData()">Search</button>
+</form>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>Trains List</h2>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>TrainNo</th>
+            <th>boardingStation</th>
+            <th>destination</th>
+            <th>timing</th>
+            <th>date</th>
+            <th>fair</th>
+            <th>ticketsAvailable</th>    
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let t of td">
+            <td>{{t.name}}</td>
+            <td>{{t.trainNo}}</td>
+            <td>{{t.boardingStation}}</td>
+            <td>{{t.destination}}</td>
+            <td>{{t.timing}}</td>
+            <td>{{t.date}}</td>
+            <td>{{t.fair}}</td>
+            <td>{{t.ticketsAvailable}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

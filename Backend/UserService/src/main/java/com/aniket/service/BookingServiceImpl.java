@@ -1,5 +1,7 @@
 package com.aniket.service;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,7 +62,7 @@ public class BookingServiceImpl implements BookingService{
 	public Booking showBookingByName(String name) throws ResourceNotFoundException {
 		Booking book = brepo.findAllByFirstName(name);
 		if(book == null) {
-			log.info("booking not found by the given name "+name);
+			log.warn("booking not found by the given name "+name);
 			throw new ResourceNotFoundException("not found");
 		}
 		return book;
@@ -81,7 +83,8 @@ public class BookingServiceImpl implements BookingService{
 				+ "\n Boarding Station: "+traindetails.getBoardingStation()+""
 				+ "\n Destination: "+traindetails.getDestination()+""
 				+ "\n Train Name: "+traindetails.getName()+""+
-				"\n Train Timing And Date: "+traindetails.getTimingAndDate()+
+				"\n Train Timing: "+traindetails.getTiming()+
+				"\n Train Date: "+traindetails.getDate()+
 				"\n Please Proceed to make payment for the Total Amount of Rs "+bk.getFair();
 		esi.sendSimpleMail(book.getEmail(), body, "Booking Details");
 		log.info("Booking successfully done for ID"+book.getId());
@@ -128,6 +131,14 @@ public class BookingServiceImpl implements BookingService{
 		td.setTicketsAvailable(td.getTicketsAvailable() + cancel.getNumberOfTravellers());
 		trepo.save(td);
 		brepo.delete(cancel);
+		String body = "Hello "+cancel.getFirstName()+" "+cancel.getLastName()+" ,We have Cancelled your booking for ID:"+cancel.getId()+"";
+		esi.sendSimpleMail(cancel.getEmail(), body, "Booking Details");
 		return cancel;
+	}
+
+
+	@Override
+	public List<TrainDetails> showByDate(LocalDate date) {
+		return trepo.findByDate(date);
 	}
 }

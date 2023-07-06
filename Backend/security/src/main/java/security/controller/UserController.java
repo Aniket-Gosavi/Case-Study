@@ -1,5 +1,7 @@
 package security.controller;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -58,6 +60,12 @@ public class UserController {
 	@PreAuthorize("hasRole('USER')")
 	public ResponseEntity<?> cancelBooking(@PathVariable int id) throws ResourceNotFoundException {
 		return userproxy.cancelBooking(id);
+	}
+	
+	@GetMapping("/findbyDate/{date}")
+	@PreAuthorize("hasRole('USER')")
+	public ResponseEntity<?> findByDate(@PathVariable LocalDate date) {
+		return userproxy.findByDate(date);
 	}
 
 }

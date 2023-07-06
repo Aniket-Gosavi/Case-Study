@@ -19,36 +19,33 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { ProductComponent } from './product/product.component';
 import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HomeComponent } from './home/home.component';
-import { AddNewProductComponent } from './add-new-product/add-new-product.component';
-import { UpdateProductComponent } from './update-product/update-product.component';
+
 import { authInterceptorProviders } from './helpers/auth.interceptor';
-import { ProfileComponent } from './profile/profile.component';
-import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
-import { AddressDetailsComponent } from './address-details/address-details.component';
+
 import { FrontPageComponent } from './front-page/front-page.component';
-import { UpdateProfileComponent } from './update-profile/update-profile.component';
+
 import { FilterPipe } from './shared/filter.pipe';
+import { AddtrainsComponent } from './addtrains/addtrains.component';
+import { ShowTrainsComponent } from './show-trains/show-trains.component';
+import { CancelticketComponent } from './cancelticket/cancelticket.component';
+import { DeletetrainComponent } from './deletetrain/deletetrain.component';
+import { SearchtrainComponent } from './searchtrain/searchtrain.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    ProductComponent,
     HeaderComponent,
-    HomeComponent,
-    AddNewProductComponent,
-    UpdateProductComponent,
-    ProfileComponent,
-    AddToCartComponent,
-    AddressDetailsComponent,
     FrontPageComponent,
-    UpdateProfileComponent,
     FilterPipe,
+    AddtrainsComponent,
+    ShowTrainsComponent,
+    CancelticketComponent,
+    DeletetrainComponent,
+    SearchtrainComponent,
 
   ],
   imports: [

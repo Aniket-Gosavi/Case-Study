@@ -1,0 +1,34 @@
+<button mat-flat-button color="primary" class="w-20" (click)="showData()">Show</button>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>Trains List</h2>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>TrainNo</th>
+            <th>boardingStation</th>
+            <th>destination</th>
+            <th>timing</th>
+            <th>date</th>
+            <th>fair</th>
+            <th>ticketsAvailable</th>    
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let t of td">
+            <td>{{t.name}}</td>
+            <td>{{t.trainNo}}</td>
+            <td>{{t.boardingStation}}</td>
+            <td>{{t.destination}}</td>
+            <td>{{t.timing}}</td>
+            <td>{{t.date}}</td>
+            <td>{{t.fair}}</td>
+            <td>{{t.ticketsAvailable}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

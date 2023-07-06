@@ -13,9 +13,12 @@ export class HeaderComponent implements OnInit {
 
   private roles: string[];
   isLoggedIn = false;
-  showAddProducts = false;
-  showProducts = false;
-  showCart = false;
+  AddTrains = false;
+  searchTrains = false;
+  showTrain = false;
+  delete = false;
+  book = false;
+  cancel = false;
   username: string;
   searchTerm:string ='';
   typeData!:any;
@@ -34,9 +37,12 @@ export class HeaderComponent implements OnInit {
       const user = this.storageService.getUser();
       this.roles = user.roles;
 
-      this.showAddProducts = this.roles.includes('ROLE_ADMIN');
-      this.showProducts = this.roles.includes('ROLE_ADMIN');
-      this.showCart = this.roles.includes('ROLE_USER');
+      this.AddTrains = this.roles.includes('ROLE_ADMIN');
+      this.showTrain = this.roles.includes('ROLE_ADMIN');
+      this.delete = this.roles.includes('ROLE_ADMIN');
+      this.searchTrains = this.roles.includes('ROLE_USER');
+      this.book = this.roles.includes('ROLE_USER');
+      this.cancel = this.roles.includes('ROLE_USER');
 
       this.username = user.username;
     }

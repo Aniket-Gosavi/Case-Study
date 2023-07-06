@@ -19,11 +19,15 @@ public class TrainServiceImpl implements TrainServiceI {
 
 	@Autowired
 	private TrainRepo trepo;
+	
+	@Autowired
+	SequenceGeneratorService seq;
 
 	@Override
 	public TrainDetails addTrain(TrainDetails td) {
-	TrainDetails traindetails = trepo.save(td);
-	return td;
+		td.setId(seq.getSequenceNum(TrainDetails.sequenceName));
+	    TrainDetails traindetails = trepo.save(td);
+	    return td;
 	}
 
 	@Override

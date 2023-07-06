@@ -1,5 +1,7 @@
 package com.aniket.repository;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -12,4 +14,5 @@ public interface TrainRepo extends MongoRepository<TrainDetails, Integer>{
 	
 	TrainDetails findByTrainNo(int trainNo);
 	List<TrainDetails> findByBoardingStationAndDestination(String boardingStation,String destination);
+	List<TrainDetails> findByDate(LocalDate date);
 }
