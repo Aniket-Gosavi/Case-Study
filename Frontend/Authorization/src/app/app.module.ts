@@ -32,6 +32,7 @@ import { ShowTrainsComponent } from './show-trains/show-trains.component';
 import { CancelticketComponent } from './cancelticket/cancelticket.component';
 import { DeletetrainComponent } from './deletetrain/deletetrain.component';
 import { SearchtrainComponent } from './searchtrain/searchtrain.component';
+import { UpdatetrainComponent } from './updatetrain/updatetrain.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { SearchtrainComponent } from './searchtrain/searchtrain.component';
     CancelticketComponent,
     DeletetrainComponent,
     SearchtrainComponent,
+    UpdatetrainComponent,
 
   ],
   imports: [

@@ -29,6 +29,7 @@ public class TrainServiceImpl implements TrainServiceI {
 	    TrainDetails traindetails = trepo.save(td);
 	    return td;
 	}
+	
 
 	@Override
 	public List<TrainDetails> showTrains() {
@@ -57,6 +58,30 @@ public class TrainServiceImpl implements TrainServiceI {
 		TrainDetails tds = td.get();
 		trepo.delete(tds);
 		return "Deleted Successfully";
+	}
+
+
+	@Override
+	public TrainDetails updateTrain(int id, TrainDetails train) {
+		Optional<TrainDetails> t = trepo.findById(id);
+		TrainDetails tr = t.get();
+		tr.setName(train.getName());
+		tr.setTrainNo(train.getTrainNo());
+		tr.setBoardingStation(train.getBoardingStation());
+		tr.setDestination(train.getDestination());
+		tr.setDate(train.getDate());
+		tr.setFair(train.getFair());
+		tr.setTiming(train.getTiming());
+		tr.setTicketsAvailable(train.getTicketsAvailable());
+		trepo.save(tr);
+		return tr;
+	}
+
+
+	@Override
+	public TrainDetails findTrainById(int id) {
+		Optional<TrainDetails> ts = trepo.findById(id);
+		return ts.get();
 	}
 
 }

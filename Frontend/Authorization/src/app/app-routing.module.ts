@@ -9,6 +9,7 @@ import { ShowTrainsComponent } from './show-trains/show-trains.component';
 import { CancelticketComponent } from './cancelticket/cancelticket.component';
 import { DeletetrainComponent } from './deletetrain/deletetrain.component';
 import { SearchtrainComponent } from './searchtrain/searchtrain.component';
+import { UpdatetrainComponent } from './updatetrain/updatetrain.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path:"show",component:ShowTrainsComponent},
   {path:"cancel",component:CancelticketComponent},
   {path:"delete",component:DeletetrainComponent},
-  {path:"search",component:SearchtrainComponent}
+  {path:"search",component:SearchtrainComponent},
+  {path:"update",component:UpdatetrainComponent}
 ];
 
 @NgModule({

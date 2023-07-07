@@ -33,9 +33,10 @@ public class TrainController {
 		return ResponseEntity.ok(ts.showTrains());
 	}
 	
-	@PutMapping("/update/{id}/{destination}")
-	public ResponseEntity<?> updateTrain(@PathVariable int id, @PathVariable String destination) throws ResourceNotFoundException{
-		return ResponseEntity.ok(ts.updateTrain(id, destination));
+	
+	@GetMapping("/findbyid/{id}")
+	public ResponseEntity<?> showById(@PathVariable int id){
+		return ResponseEntity.ok(ts.findTrainById(id));
 	}
 	
 	@DeleteMapping("/delete/{id}")
@@ -43,9 +44,9 @@ public class TrainController {
 		return ts.deleteTrain(id);
 	}
 	
-	@PutMapping("/update")
-	public ResponseEntity<?> updateTrain(@RequestBody TrainDetails td){
-		TrainDetails save = ts.addTrain(td);
+	@PutMapping("/update/{id}")
+	public ResponseEntity<?> updateTrain(@PathVariable int id,@RequestBody TrainDetails td){
+		TrainDetails save = ts.updateTrain(id, td);
 		return ResponseEntity.ok(save);
 	}
 

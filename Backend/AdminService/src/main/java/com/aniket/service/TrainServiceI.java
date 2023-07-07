@@ -10,4 +10,6 @@ public interface TrainServiceI {
 	List<TrainDetails> showTrains();
 	TrainDetails updateTrain(int trainNo, String destination) throws ResourceNotFoundException;
 	String deleteTrain(int id) throws ResourceNotFoundException;
+	TrainDetails updateTrain(int id, TrainDetails train);
+	TrainDetails findTrainById(int id);
 }

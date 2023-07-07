@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AdminserviceService } from '../adminservice.service';
 import { TrainDetails } from '../model/trainDetails';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-searchtrain',
@@ -9,20 +10,19 @@ import { TrainDetails } from '../model/trainDetails';
 })
 export class SearchtrainComponent {
 
-  td:TrainDetails[];
+  td: TrainDetails[];
 
-  Source:any;
-  Destination:any;
+  sourceName:any;
+  destinationName:any;
+  constructor(private user:UserService) { }
 
-  constructor(private admin: AdminserviceService){}
+  ngOnInit() {
+    // Initialization code here if needed
+  }
 
-  onInit(){
-    
-  }    
-
-  searchData(){
-    this.admin.get().subscribe(data=>{
-      this.td=data;
+  searchData() {
+    this.user.searchTrain(this.sourceName,this.destinationName).subscribe(data => {
+      this.td = data;
       console.log(data);
     });
   }

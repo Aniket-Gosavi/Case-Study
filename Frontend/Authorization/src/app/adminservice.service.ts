@@ -9,7 +9,17 @@ import { Observable } from 'rxjs';
 })
 export class AdminserviceService {
 
+  id:any;
+
   constructor(private http: HttpClient) { }
+
+  saveID(ID:any){ 
+    this.id=ID;
+  }
+
+  returnID(){
+    return this.id;
+  }
 
   get(){
     return this.http.get<TrainDetails[]>("http://localhost:8001/show");
@@ -21,5 +31,13 @@ export class AdminserviceService {
 
   delete(id:any){
     return this.http.delete("http://localhost:8001/delete/"+id);
+  }
+
+  getById(id:any){
+    return this.http.get<TrainDetails>("http://localhost:8001/findbyid/"+id);
+  }
+
+  updateTrain(id:any, train:TrainDetails){
+    return this.http.put<TrainDetails>("http://localhost:8001/update/"+id,train);
   }
 }
