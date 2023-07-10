@@ -1,6 +1,7 @@
   <div class="form" style="border: 1px solid black;">
     <form #myForm="ngForm">
       <h3>Create Account</h3>
+      <br>
       <label for="username">Username</label><br />
       <input
         type="text"
@@ -48,9 +49,9 @@
 
       <button mat-raised-button color="accent" (click)="onCreateAccount()" [disabled]="!myForm.valid">Create Account</button>
       <hr>
-      <span style="margin-left: 170px;">
+    </form>
+    <span>
       Already have account? <a routerLink="/login" style="text-decoration: none;">signin</a> 
       </span>
-    </form>
   </div>
-
+<br>

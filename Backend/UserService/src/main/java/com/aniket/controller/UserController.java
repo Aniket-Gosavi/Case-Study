@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.aniket.exception.ResourceNotFoundException;
 import com.aniket.model.Booking;
 import com.aniket.model.TrainDetails;
+import com.aniket.model.TransactionDetails;
 import com.aniket.repository.TrainRepo;
 import com.aniket.service.BookingService;
+import com.aniket.service.BookingServiceImpl;
 import com.razorpay.RazorpayException;
 
 @CrossOrigin
@@ -29,7 +31,7 @@ public class UserController {
 	private TrainRepo trepo;
 
 	@Autowired
-	private BookingService bk;
+	private BookingServiceImpl bk;
 
 	@PostMapping("/book")
 	public ResponseEntity<?> bookTrain(@RequestBody Booking book) {
@@ -54,6 +56,10 @@ public class UserController {
 	public ResponseEntity<?> findByName(@PathVariable String name) throws ResourceNotFoundException {
 		return ResponseEntity.ok(bk.showBookingByName(name));
 	}
+	@GetMapping("/findbyno/{tno}")
+	public ResponseEntity<?> findByNo(@PathVariable int tno){
+		return ResponseEntity.ok(bk.findByNo(tno));
+	}
 	
 	@GetMapping("/findbysourceanddestination/{source}/{destination}")
 	public ResponseEntity<?> findBySourceAndDestination(@PathVariable String source, @PathVariable String destination) throws ResourceNotFoundException {
@@ -70,9 +76,8 @@ public class UserController {
 		return ResponseEntity.ok(bk.cancelTicket(id));
 	}
 	
-	@PostMapping("/pay")
-	public String onlinePayment(@RequestBody Booking book) throws RazorpayException {
-		return bk.onlinePayment(book);
+	@GetMapping("/createTransaction/{amount}")
+	public TransactionDetails createTransaction(@PathVariable double amount) {
+		return bk.createTransaction(amount);
 	}
-
 }

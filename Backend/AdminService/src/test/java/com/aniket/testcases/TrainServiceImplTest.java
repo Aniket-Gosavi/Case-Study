@@ -1,9 +1,10 @@
 package com.aniket.testcases;
-
 import com.aniket.exception.ResourceNotFoundException;
 import com.aniket.model.TrainDetails;
 import com.aniket.repository.TrainRepo;
+import com.aniket.service.SequenceGeneratorService;
 import com.aniket.service.TrainServiceImpl;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -17,123 +18,147 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class TrainServiceImplTest {
 
-    @Mock
-    private TrainRepo trainRepo;
+public class TrainServiceImplTest {
 
-    @InjectMocks
-    private TrainServiceImpl trainService;
 
-    @BeforeEach
-    public void setup() {
-        MockitoAnnotations.openMocks(this);
-    }
+@Mock
+private TrainRepo trainRepo;
 
-    @Test
-    void testAddTrain() {
-        // Arrange
-        TrainDetails train = new TrainDetails();
-        train.setId(1);
-        train.setDestination("Destination");
-        when(trainRepo.save(train)).thenReturn(train);
+@Mock
+private SequenceGeneratorService sequenceGeneratorService;
 
-        // Act
-        TrainDetails savedTrain = trainService.addTrain(train);
+@InjectMocks
+private TrainServiceImpl trainService;
 
-        // Assert
-        assertNotNull(savedTrain);
-        assertEquals(train.getId(), savedTrain.getId());
-        assertEquals(train.getDestination(), savedTrain.getDestination());
-        verify(trainRepo, times(1)).save(train);
-    }
+@BeforeEach
+public void setUp() {
+    MockitoAnnotations.openMocks(this);
+}
 
-    @Test
-    void testShowTrains() {
-        // Arrange
-        List<TrainDetails> trainList = new ArrayList<>();
-        TrainDetails train1 = new TrainDetails();
-        train1.setId(1);
-        train1.setDestination("Destination 1");
-        TrainDetails train2 = new TrainDetails();
-        train2.setId(2);
-        train2.setDestination("Destination 2");
-        trainList.add(train1);
-        trainList.add(train2);
-        when(trainRepo.findAll()).thenReturn(trainList);
+@Test
+public void testAddTrain() {
+    TrainDetails trainDetails = new TrainDetails();
+    when(sequenceGeneratorService.getSequenceNum(TrainDetails.sequenceName)).thenReturn(1);
+    when(trainRepo.save(trainDetails)).thenReturn(trainDetails);
 
-        // Act
-        List<TrainDetails> result = trainService.showTrains();
+    TrainDetails result = trainService.addTrain(trainDetails);
 
-        // Assert
-        assertNotNull(result);
-        assertEquals(trainList.size(), result.size());
-        assertEquals(trainList, result);
-        verify(trainRepo, times(1)).findAll();
-    }
+    assertEquals(1L, result.getId());
+    assertEquals(trainDetails, result);
 
-    @Test
-    void testUpdateTrain() throws ResourceNotFoundException {
-        // Arrange
-        int trainId = 1;
-        String newDestination = "New Destination";
-        TrainDetails existingTrain = new TrainDetails();
-        existingTrain.setId(trainId);
-        existingTrain.setDestination("Old Destination");
-        when(trainRepo.findById(trainId)).thenReturn(Optional.of(existingTrain));
-        when(trainRepo.save(existingTrain)).thenReturn(existingTrain);
+    verify(sequenceGeneratorService, times(1)).getSequenceNum(TrainDetails.sequenceName);
+    verify(trainRepo, times(1)).save(trainDetails);
+}
 
-        // Act
-        TrainDetails updatedTrain = trainService.updateTrain(trainId, newDestination);
+@Test
+public void testShowTrains() {
+    List<TrainDetails> trainList = new ArrayList<>();
+    trainList.add(new TrainDetails());
 
-        // Assert
-        assertNotNull(updatedTrain);
-        assertEquals(trainId, updatedTrain.getId());
-        assertEquals(newDestination, updatedTrain.getDestination());
-        verify(trainRepo, times(1)).findById(trainId);
-        verify(trainRepo, times(1)).save(existingTrain);
-    }
+    when(trainRepo.findAll()).thenReturn(trainList);
 
-    @Test
-    void testUpdateTrain_ThrowsResourceNotFoundException() {
-        // Arrange
-        int trainId = 1;
-        String newDestination = "New Destination";
-        when(trainRepo.findById(trainId)).thenReturn(Optional.empty());
+    List<TrainDetails> result = trainService.showTrains();
 
-        // Act & Assert
-        assertThrows(ResourceNotFoundException.class, () -> trainService.updateTrain(trainId, newDestination));
-        verify(trainRepo, times(1)).findById(trainId);
-        verify(trainRepo, never()).save(any());
-    }
+    assertEquals(trainList, result);
 
-    @Test
-    void testDeleteTrain() throws ResourceNotFoundException {
-        // Arrange
-        int trainId = 1;
-        TrainDetails existingTrain = new TrainDetails();
-        existingTrain.setId(trainId);
-        existingTrain.setDestination("Destination");
-        when(trainRepo.findById(trainId)).thenReturn(Optional.of(existingTrain));
+    verify(trainRepo, times(1)).findAll();
+}
 
-        // Act
-        String result = trainService.deleteTrain(trainId);
+@Test
+public void testUpdateTrain() throws ResourceNotFoundException {
+    int id = 1;
+    String destination = "New Destination";
+    TrainDetails trainDetails = new TrainDetails();
+    Optional<TrainDetails> optionalTrainDetails = Optional.of(trainDetails);
 
-        // Assert
-        assertEquals("Deleted Successfully", result);
-        verify(trainRepo, times(1)).findById(trainId);
-        verify(trainRepo, times(1)).delete(existingTrain);
-    }
+    when(trainRepo.findById(id)).thenReturn(optionalTrainDetails);
+    when(trainRepo.save(trainDetails)).thenReturn(trainDetails);
 
-    @Test
-    void testDeleteTrain_ThrowsResourceNotFoundException() {
-        // Arrange
-        int trainId = 1;
-        when(trainRepo.findById(trainId)).thenReturn(Optional.empty());
+    TrainDetails result = trainService.updateTrain(id, destination);
 
-        // Act & Assert
-        assertThrows(ResourceNotFoundException.class, () -> trainService.deleteTrain(trainId));
-        verify(trainRepo, times(1)).findById(trainId);
-        verify(trainRepo, never()).delete(any());
-    }
+    assertEquals(destination, result.getDestination());
+
+    verify(trainRepo, times(1)).findById(id);
+    verify(trainRepo, times(1)).save(trainDetails);
+}
+
+@Test
+public void testUpdateTrainNotFound() {
+    int id = 1;
+    String destination = "New Destination";
+
+    when(trainRepo.findById(id)).thenReturn(Optional.empty());
+
+    ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class,
+            () -> trainService.updateTrain(id, destination));
+
+    assertEquals("Train with the following Id Does not Exist " + id, exception.getMessage());
+
+    verify(trainRepo, times(1)).findById(id);
+    verify(trainRepo, never()).save(any(TrainDetails.class));
+}
+
+@Test
+public void testDeleteTrain() throws ResourceNotFoundException {
+    int id = 1;
+    TrainDetails trainDetails = new TrainDetails();
+    Optional<TrainDetails> optionalTrainDetails = Optional.of(trainDetails);
+
+    when(trainRepo.findById(id)).thenReturn(optionalTrainDetails);
+
+    String result = trainService.deleteTrain(id);
+
+    assertEquals("Deleted Successfully", result);
+
+    verify(trainRepo, times(1)).findById(id);
+    verify(trainRepo, times(1)).delete(trainDetails);
+}
+
+@Test
+public void testDeleteTrainNotFound() {
+    int id = 1;
+
+    when(trainRepo.findById(id)).thenReturn(Optional.empty());
+
+    ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class,
+            () -> trainService.deleteTrain(id));
+
+    assertEquals("Train with the following Id Does not Exist " + id, exception.getMessage());
+
+    verify(trainRepo, times(1)).findById(id);
+    verify(trainRepo, never()).delete(any(TrainDetails.class));
+}
+
+@Test
+public void testUpdateTrainDetails() {
+    int id = 1;
+    TrainDetails trainDetails = new TrainDetails();
+    Optional<TrainDetails> optionalTrainDetails = Optional.of(trainDetails);
+
+    when(trainRepo.findById(id)).thenReturn(optionalTrainDetails);
+    when(trainRepo.save(trainDetails)).thenReturn(trainDetails);
+
+    TrainDetails result = trainService.updateTrain(id, trainDetails);
+
+    assertEquals(trainDetails, result);
+
+    verify(trainRepo, times(1)).findById(id);
+    verify(trainRepo, times(1)).save(trainDetails);
+}
+
+@Test
+public void testFindTrainById() {
+    int id = 1;
+    TrainDetails trainDetails = new TrainDetails();
+    Optional<TrainDetails> optionalTrainDetails = Optional.of(trainDetails);
+
+    when(trainRepo.findById(id)).thenReturn(optionalTrainDetails);
+
+    TrainDetails result = trainService.findTrainById(id);
+
+    assertEquals(trainDetails, result);
+
+    verify(trainRepo, times(1)).findById(id);
+}
 }

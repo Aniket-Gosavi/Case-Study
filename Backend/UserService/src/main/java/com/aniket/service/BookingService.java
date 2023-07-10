@@ -17,5 +17,4 @@ public interface BookingService {
 	List<TrainDetails> showBySourceAndDestination(String source,String destination) throws ResourceNotFoundException;
 	List<TrainDetails> showByDate(LocalDate date);
 	Booking cancelTicket(int id)throws ResourceNotFoundException;
-	String onlinePayment(Booking book) throws RazorpayException;
 }

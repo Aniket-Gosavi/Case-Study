@@ -1,14 +1,10 @@
 <p>
   <mat-toolbar color="primary">
-    <a
-      role="button"
-      style="text-decoration: none"
-      (click)="onClickElectronicShopping()"
-    >
+    <img src="https://logos-download.com/wp-content/uploads/2019/11/Indian_Railway_Logo_1.png" alt="Logo" class="logo">
       <span style="color: white">
         Railway Reservation</span
       >
-    </a>
+    
     &nbsp;<button mat-raised-button color="primary" *ngIf="!isLoggedIn">
       <div class="navbar-collapse">
         <ul class="navbar-nav me-auto">
@@ -20,7 +16,7 @@
               data-bs-toggle="dropdown"
               style="color: white"
             >
-              User
+              Login
             </a>
             <ul class="dropdown-menu dropdown-menu-light">
               <li>
@@ -38,12 +34,10 @@
     </button>
   </mat-toolbar>
   <mat-toolbar *ngIf="!isLoggedIn">
-    <button mat-raised-button routerLink="/front-page">Home</button>
+    <button mat-raised-button routerLink="">Home</button>
   </mat-toolbar>
   <mat-toolbar *ngIf="isLoggedIn">
-    <a mat-raised-button routerLink="">
-      <mat-icon>home</mat-icon>
-    </a>
+    <button mat-raised-button routerLink="">Home</button>
     <button mat-raised-button *ngIf="AddTrains" routerLink="/addTrains">
       Add Trains
     </button>

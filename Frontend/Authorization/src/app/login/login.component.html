@@ -36,8 +36,7 @@
                 <small *ngIf="password.touched && password.errors && password.errors['minlength']">*Password must be at least 6 characters</small><br>
             <button  mat-raised-button color="accent" (click)="onLogin()" [disabled]="!myForm.valid">Login</button>
             <hr>
-            <span style="margin-left: 130px;">
-            New user? <a routerLink="/signup" style="text-decoration: none;">signup</a> 
+            <span>New user? <a routerLink="/signup" style="text-decoration: none;">signup</a> 
         </span>
         </form>
     </div>

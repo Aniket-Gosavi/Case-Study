@@ -4,6 +4,7 @@ import { CartService } from '../services/cart.service';
 import { ProductService } from '../services/product.service';
 import { StorageService } from '../services/storage.service';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',

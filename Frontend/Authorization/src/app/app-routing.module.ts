@@ -10,6 +10,7 @@ import { CancelticketComponent } from './cancelticket/cancelticket.component';
 import { DeletetrainComponent } from './deletetrain/deletetrain.component';
 import { SearchtrainComponent } from './searchtrain/searchtrain.component';
 import { UpdatetrainComponent } from './updatetrain/updatetrain.component';
+import { BookTrainComponent } from './book-train/book-train.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path:"cancel",component:CancelticketComponent},
   {path:"delete",component:DeletetrainComponent},
   {path:"search",component:SearchtrainComponent},
-  {path:"update",component:UpdatetrainComponent}
+  {path:"update",component:UpdatetrainComponent},
+  {path:"book",component:BookTrainComponent}
 ];
 
 @NgModule({

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.aniket.exception.ResourceNotFoundException;
 import com.aniket.model.Booking;
 import com.aniket.model.TrainDetails;
+import com.aniket.model.TransactionDetails;
 import com.aniket.repository.BookingRepo;
 import com.aniket.repository.TrainRepo;
 import com.razorpay.Order;
@@ -26,6 +27,12 @@ import mailservice.EmailServiceImpl;
 
 @Service
 public class BookingServiceImpl implements BookingService{
+	
+	private static final String KEY = "rzp_test_XVCzdRPCKLbgBf";
+	
+	private static final String KEY_SECRET = "4QTS0RhqZAeVXUcFjWRlTshP";
+	
+	private static final String CURRENCY = "INR";
 	
 	private static final Logger log = LoggerFactory.getLogger(BookingServiceImpl.class);
 	
@@ -85,7 +92,7 @@ public class BookingServiceImpl implements BookingService{
 				+ "\n Train Name: "+traindetails.getName()+""+
 				"\n Train Timing: "+traindetails.getTiming()+
 				"\n Train Date: "+traindetails.getDate()+
-				"\n Please Proceed to make payment for the Total Amount of Rs "+bk.getFair();
+				"\n Wishing you A Happy Journey Ahead";
 		esi.sendSimpleMail(book.getEmail(), body, "Booking Details");
 		log.info("Booking successfully done for ID"+book.getId());
 		return bk;
@@ -102,22 +109,6 @@ public class BookingServiceImpl implements BookingService{
 		return show;
 	}
 	
-	@Override
-	public String onlinePayment(Booking book) throws RazorpayException {
-		
-		double amt= book.getFair();
-		System.out.println(amt);
-		
-		 RazorpayClient client =  new RazorpayClient("rzp_test_BL4rFuV9nKRoMc","g91auwnxjWhSoguFayUZScuo" );
-		 JSONObject options = new JSONObject();
-		 options.put("amount", amt*100);
-		 options.put("currency", "INR");
-		 options.put("receipt", "txn_123456");
-		 Order order = client.Orders.create(options);
-		 System.out.println(order);
-		 return order.toString();
-	}
-
 
 	@Override
 	public Booking cancelTicket(int id) throws ResourceNotFoundException{
@@ -140,5 +131,38 @@ public class BookingServiceImpl implements BookingService{
 	@Override
 	public List<TrainDetails> showByDate(LocalDate date) {
 		return trepo.findByDate(date);
+	}
+	
+	public double findByNo(int tno) {
+		TrainDetails td = trepo.findByTrainNo(tno);
+		return td.getFair();
+	}
+	
+
+	public TransactionDetails createTransaction(double amount) {
+		try {
+			
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("amount", (amount * 100));
+			jsonObject.put("currency", CURRENCY);
+			
+			RazorpayClient razorpayClient = new RazorpayClient(KEY, KEY_SECRET);
+			
+			Order order = razorpayClient.orders.create(jsonObject);
+			
+			return prepareTransactionDetails(order);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
+	}
+	
+	private TransactionDetails prepareTransactionDetails(Order order) {
+		String orderId = order.get("id");
+		String currency = order.get("currency");
+		Integer amount = order.get("amount");
+		
+		TransactionDetails details = new TransactionDetails(orderId,currency,amount,KEY);
+		return details;
 	}
 }

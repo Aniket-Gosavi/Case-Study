@@ -1,58 +1,69 @@
-div{
-    background-color: white;
+.form {
+    border: 1px solid black;
     padding: 20px;
-    margin : auto ;
-    border-radius: 10px;
-    width: 600px;
-    height: auto;
-    position: relative;
-}
-
-body{
-    padding-top: 100px;
-    padding-bottom: 200px;
-    background-color: #D6DBDF;
-}
-
-input{
+    width: 400px;
+    margin: 0 auto;
+    background-color: #f2f2f2;
+  }
+  
+  h3 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #333;
+    margin-left: 33%;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
     width: 100%;
-    padding: 5px;
-    margin: 4px;
-}
-
-label{
-    margin: 5px;
-}
-
-select{
-    margin: 4px;
-    width: 100%;
-    height: 40px;
-}
-
-button{
-    border: none;
-    margin-left: 150px;
-    width: 250px;
-    height: 50px;
-    background-color: #85C1E9  ;
-    border-radius: 3px;
-}
-
-option{
-    padding: 4px;
-}
-
-input.ng-invalid.ng-touched{
-    border: 1px solid red ;
-}
-small{
+    padding: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  small {
     color: red;
-    padding-left: 6px;
-}
-.invalid-feedback{
-    width: 100%;
-}
-h3{
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+  }
+  
+  button {
+    display: block;
+    margin-top: 12px;
+    padding: 10px 20px;
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  span {
+    display: block;
     text-align: center;
-}
+    margin-top: 16px;
+    font-size: 14px;
+    margin-left: 0%;
+  }
+  
+  span a {
+    text-decoration: none;
+    color: #2196f3;
+    font-weight: bold;
+    
+  }
+  
