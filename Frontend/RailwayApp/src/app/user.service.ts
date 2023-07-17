@@ -17,6 +17,10 @@ export class UserService {
     return this.book;
   }
 
+  findBooking(id:any){
+    return this.http.get("http://localhost:8002/findbyId/"+id);
+  }
+
   public createTransaction(amount:any){
     return this.http.get<TransactionDetails>("http://localhost:8002/createTransaction/"+amount);
   }

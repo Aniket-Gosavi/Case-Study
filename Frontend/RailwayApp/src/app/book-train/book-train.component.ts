@@ -4,6 +4,8 @@ import { UserService } from '../user.service';
 import { Route, Router } from '@angular/router';
 import { TrainDetails } from '../model/trainDetails';
 import { AdminserviceService } from '../adminservice.service';
+import { LoginErrorDialogComponent } from '../login-error-dialog/login-error-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 //import * as Razorpay from 'razorpay';
 declare var Razorpay:any;
 @Component({
@@ -13,19 +15,19 @@ declare var Razorpay:any;
 })
 export class BookTrainComponent {
 
+  successmsg:any;
   num:any;
   bk: any = new Booking;
   boo:Booking;
   td:TrainDetails[];
   
-  constructor(private user:UserService,private router:Router,private admin: AdminserviceService){}
+  constructor(private user:UserService,private router:Router,private admin: AdminserviceService,private dialog: MatDialog){}
 
   book(){
     this.user.bookTrain(this.bk).subscribe(data=>{
       this.boo=this.user.currentBooking();
       console.log(this.boo);
       this.createTransaction();
-      alert("Booking done successFully Please Make the payment For the booking");
   });
   }
   
@@ -53,7 +55,6 @@ export class BookTrainComponent {
         console.log(error);
       }
     )
-    this.router.navigate([''])
   }
 
   openTransactionModel(response:any){
@@ -86,5 +87,14 @@ export class BookTrainComponent {
   }
   processResponse(resp:any){
     console.log(resp);
+  }
+  msg(){
+    this.successmsg = 'Booking Done For '+this.bk.firstName+
+    ' Please Procide to Pay the amount '+this.num;
+
+    // Open the dialog with the error message
+    this.dialog.open(LoginErrorDialogComponent, {
+      data: this.successmsg,
+    });
   }
 }

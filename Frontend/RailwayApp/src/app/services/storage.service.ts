@@ -8,10 +8,16 @@ const USER_KEY = 'auth-user';
   providedIn: 'root'
 })
 export class StorageService {
+  isLoggedIn:boolean = false;
   constructor() {}
  
   signOut():void{
     window.sessionStorage.clear();
+  }
+
+  public isUserLoggedIn(){
+    this.isLoggedIn = !!this.getToken();
+    return this.isLoggedIn;
   }
 
   public saveToken(token:string):void{

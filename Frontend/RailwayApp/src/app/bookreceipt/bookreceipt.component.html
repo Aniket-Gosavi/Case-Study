@@ -1,0 +1,10 @@
+<div class="receipt">
+    <h2>Booking Receipt</h2>
+    <p><strong>Train Number:</strong> {{ bookingDetails.trainNo }}</p>
+    <p><strong>First Name:</strong> {{ bookingDetails.firstName }}</p>
+    <p><strong>Last Name:</strong> {{ bookingDetails.lastName }}</p>
+    <p><strong>Email:</strong> {{ bookingDetails.email }}</p>
+    <p><strong>Number of Travellers:</strong> {{ bookingDetails.numberOfTravellers }}</p>
+    <button (click)="printReceipt()">Print Receipt</button>
+  </div>
+  

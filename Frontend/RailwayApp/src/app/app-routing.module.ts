@@ -11,19 +11,23 @@ import { DeletetrainComponent } from './deletetrain/deletetrain.component';
 import { SearchtrainComponent } from './searchtrain/searchtrain.component';
 import { UpdatetrainComponent } from './updatetrain/updatetrain.component';
 import { BookTrainComponent } from './book-train/book-train.component';
+import { AuthguardService } from './services/authguard.service';
+import { BookreceiptComponent } from './bookreceipt/bookreceipt.component';
+
 
 
 const routes: Routes = [
   {path:"signup",component:RegisterComponent},
   {path:"login",component:LoginComponent},
-  {path:"addTrains",component:AddtrainsComponent},
+  {path:"addTrains",component:AddtrainsComponent,canActivate: [AuthguardService]},
   {path:"",component:FrontPageComponent},
-  {path:"show",component:ShowTrainsComponent},
-  {path:"cancel",component:CancelticketComponent},
-  {path:"delete",component:DeletetrainComponent},
-  {path:"search",component:SearchtrainComponent},
-  {path:"update",component:UpdatetrainComponent},
-  {path:"book",component:BookTrainComponent}
+  {path:"show",component:ShowTrainsComponent,canActivate: [AuthguardService]},
+  {path:"cancel",component:CancelticketComponent,canActivate: [AuthguardService]},
+  {path:"delete",component:DeletetrainComponent,canActivate: [AuthguardService]},
+  {path:"search",component:SearchtrainComponent,canActivate: [AuthguardService]},
+  {path:"update",component:UpdatetrainComponent,canActivate: [AuthguardService]},
+  {path:"book",component:BookTrainComponent,canActivate: [AuthguardService]},
+  {path:"receipt",component:BookreceiptComponent,canActivate: [AuthguardService]}
 ];
 
 @NgModule({

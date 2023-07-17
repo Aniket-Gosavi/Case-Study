@@ -34,6 +34,9 @@ import { DeletetrainComponent } from './deletetrain/deletetrain.component';
 import { SearchtrainComponent } from './searchtrain/searchtrain.component';
 import { UpdatetrainComponent } from './updatetrain/updatetrain.component';
 import { BookTrainComponent } from './book-train/book-train.component';
+import { LoginErrorDialogComponent } from './login-error-dialog/login-error-dialog.component';
+import { BookreceiptComponent } from './bookreceipt/bookreceipt.component';
+
 
 @NgModule({
   declarations: [
@@ -50,6 +53,8 @@ import { BookTrainComponent } from './book-train/book-train.component';
     SearchtrainComponent,
     UpdatetrainComponent,
     BookTrainComponent,
+    LoginErrorDialogComponent,
+    BookreceiptComponent
 
   ],
   imports: [
