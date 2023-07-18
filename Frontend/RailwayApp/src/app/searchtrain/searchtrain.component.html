@@ -1,6 +1,6 @@
 <form #myForm="ngForm">
   <h3>Search Train</h3>
-  <h3>Make Sure You note down the Train Number you want to Book</h3>
+  <!-- <h3>Make Sure You note down the Train Number you want to Book</h3> -->
   <label for="source">Enter source</label><br />
   <input
     type="text"
@@ -43,7 +43,8 @@
             <th>timing</th>
             <th>date</th>
             <th>fair</th>
-            <th>ticketsAvailable</th>    
+            <th>ticketsAvailable</th>
+            <th>Action</th>    
           </tr>
         </thead>
         <tbody>
@@ -56,6 +57,8 @@
             <td>{{t.date}}</td>
             <td>{{t.fair}}</td>
             <td>{{t.ticketsAvailable}}</td>
+            <td><button (click)="bookTrain(t.trainNo)" class="btn btn-warning" 
+              style="margin-left: 10px">Book Train</button></td>
           </tr>
         </tbody>
       </table>

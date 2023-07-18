@@ -30,6 +30,10 @@ export class BookTrainComponent {
       this.createTransaction();
   });
   }
+
+  ngOnInit(){
+    this.bk.trainNo = this.user.returnNo();
+  }
   
 
   createTransaction(){

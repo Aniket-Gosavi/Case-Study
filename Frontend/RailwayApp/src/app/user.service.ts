@@ -11,6 +11,8 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  num:any;
+
   book:Booking;
 
   currentBooking(){
@@ -23,6 +25,14 @@ export class UserService {
 
   public createTransaction(amount:any){
     return this.http.get<TransactionDetails>("http://localhost:8002/createTransaction/"+amount);
+  }
+
+  saveNo(no:any){
+    this.num=no;
+  }
+
+  returnNo(){
+    return this.num;
   }
 
   get(id:any){
