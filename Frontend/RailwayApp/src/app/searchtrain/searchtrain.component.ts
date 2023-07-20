@@ -20,7 +20,6 @@ export class SearchtrainComponent {
     private admin:AdminserviceService) { }
 
   ngOnInit() {
-    // Initialization code here if needed
     this.showData();
   }
 
@@ -31,8 +30,9 @@ export class SearchtrainComponent {
     });
   }
 
-  bookTrain(trainno:any){
+  bookTrain(trainno:any,td:any){
     this.user.saveNo(trainno);
+    this.admin.saveID(td);
     this.router.navigate(['book']);
   }
 

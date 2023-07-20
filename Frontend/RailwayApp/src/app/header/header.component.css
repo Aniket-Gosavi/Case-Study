@@ -72,3 +72,8 @@
     background-color: #0d47a1; /* Change this to the desired hover background color */
     cursor: pointer;
   }
+
+  .flex-spacer {
+    flex: 1;
+  }
+  

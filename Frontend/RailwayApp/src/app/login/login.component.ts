@@ -60,7 +60,12 @@ export class LoginComponent implements OnInit {
       this.dialog.open(LoginErrorDialogComponent, {
         data: this.errorMessage,
       });
-    }
-  );
-}
+
+      // Reset the userlogin object to clear the textboxes
+      this.userlogin = {
+        username: '',
+        password: ''
+      };
+    });
+  }
 }

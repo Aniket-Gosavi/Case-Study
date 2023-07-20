@@ -65,4 +65,8 @@
     color: #888;
   }
   
-  
+  .form.passenger-info-enabled .passenger-details {
+    border: 1px solid blue; /* Modify the border style as per your requirement */
+    padding: 10px;
+    margin-top: 10px;
+  }

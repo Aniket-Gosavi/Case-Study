@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.aniket.exception.ResourceNotFoundException;
 import com.aniket.model.Booking;
+import com.aniket.model.SavedBookings;
 import com.aniket.model.TrainDetails;
 import com.aniket.model.TransactionDetails;
 import com.aniket.repository.TrainRepo;
@@ -36,6 +37,11 @@ public class UserController {
 	@PostMapping("/book")
 	public ResponseEntity<?> bookTrain(@RequestBody Booking book) {
 		return ResponseEntity.ok(bk.bookTrain(book));
+	}
+	
+	@PostMapping("/savebook")
+	public ResponseEntity<?> saveBookTrain(@RequestBody SavedBookings book) {
+		return ResponseEntity.ok(bk.Savebook(book));
 	}
 
 	@GetMapping("/show")

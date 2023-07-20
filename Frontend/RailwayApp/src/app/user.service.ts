@@ -51,4 +51,8 @@ export class UserService {
     this.book = bk;
     return this.http.post<Booking>("http://localhost:8002/book",bk);
   }
+
+  savebook(bk:any){
+    return this.http.post("http://localhost:8002/savebook",bk);
+  }
 }

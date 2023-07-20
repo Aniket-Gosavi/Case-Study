@@ -1,7 +1,10 @@
 package com.aniket.model;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import jakarta.validation.constraints.NotEmpty;
@@ -25,6 +28,6 @@ public class Booking {
 	private int trainNo;
 	@NotEmpty(message = "Travellers shoud not be empty")
 	private int numberOfTravellers;
-	private double fair;
+	private List<Passengers> passList; 
 
 }

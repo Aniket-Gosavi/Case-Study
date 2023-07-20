@@ -1,3 +1,5 @@
+import { Passenger } from "./Passenger";
+
 export class Booking {
      id: number;
      firstName: string;
@@ -5,6 +7,6 @@ export class Booking {
      email: string;
      trainNo: number;
      numberOfTravellers: number;
-     fair: number;
+     passengers: Passenger[];
   }
   

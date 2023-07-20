@@ -53,3 +53,15 @@
 .btn-warning:hover {
   background-color: #ec971f;
 }
+
+.btn-danger {
+  background-color: #d9534f;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+.btn-danger:hover {
+  background-color: #c9302c;
+}

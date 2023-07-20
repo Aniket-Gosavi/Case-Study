@@ -1,82 +1,51 @@
-<p>
-  <mat-toolbar color="primary">
-    <img src="https://logos-download.com/wp-content/uploads/2019/11/Indian_Railway_Logo_1.png" alt="Logo" class="logo">
-      <span style="color: white">
-        Railway Reservation</span
-      >
-    
-    &nbsp;<button mat-raised-button color="primary" *ngIf="!isLoggedIn">
+<mat-toolbar color="primary">
+  <img src="https://logos-download.com/wp-content/uploads/2019/11/Indian_Railway_Logo_1.png" alt="Logo" class="logo">
+  <span style="color: white">Railway Reservation</span>
+  <span class="flex-spacer"></span> <!-- Add a flex spacer -->
+
+  <!-- Buttons for not logged in -->
+  <ng-container *ngIf="!isLoggedIn">
+    <button mat-raised-button color="primary">
       <div class="navbar-collapse">
         <ul class="navbar-nav me-auto">
           <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-              style="color: white"
-            >
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" style="color: white">
               Login
             </a>
             <ul class="dropdown-menu dropdown-menu-light">
-              <li>
-                <a class="dropdown-item" href="#" routerLink="/signup"
-                  >SignUp</a
-                >
-              </li>
-              <li>
-                <a class="dropdown-item" href="#" routerLink="/login">SignIn</a>
-              </li>
+              <li><a class="dropdown-item" href="#" routerLink="/signup">SignUp</a></li>
+              <li><a class="dropdown-item" href="#" routerLink="/login">SignIn</a></li>
             </ul>
           </li>
         </ul>
       </div>
     </button>
-  </mat-toolbar>
-  <mat-toolbar *ngIf="!isLoggedIn">
-    <button mat-raised-button routerLink="">Home</button>
-  </mat-toolbar>
-  <mat-toolbar *ngIf="isLoggedIn">
-    <button mat-raised-button routerLink="">Home</button>
-    <button mat-raised-button *ngIf="AddTrains" routerLink="/addTrains">
-      Add Trains
-    </button>
-    <button mat-raised-button *ngIf="searchTrains" routerLink="/search">
-      Search
-    </button>
-    <button mat-raised-button *ngIf="showTrain" routerLink="/show">
-      Show
-    </button>
-    <button mat-raised-button *ngIf="book" routerLink="/book" class="book-button">
-      Book
-    </button>
-    <button mat-raised-button *ngIf="cancel" routerLink="/cancel">
-      Cancel Booking
-    </button>
+  </ng-container>
 
-    &nbsp;<button mat-raised-button>
+  <!-- Buttons for logged in -->
+  <ng-container *ngIf="isLoggedIn">
+    <button mat-raised-button routerLink="">Home</button>
+    <button mat-raised-button *ngIf="AddTrains" routerLink="/addTrains">Add Trains</button>
+    <button mat-raised-button *ngIf="searchTrains" routerLink="/search">Search</button>
+    <button mat-raised-button *ngIf="showTrain" routerLink="/show">Show</button>
+    <button mat-raised-button *ngIf="book" routerLink="/book" class="book-button">Book</button>
+    <button mat-raised-button *ngIf="cancel" routerLink="/cancel">Cancel Booking</button>
+    <span class="flex-spacer"></span> <!-- Add a flex spacer -->
+
+    <button mat-raised-button>
       <div class="navbar-collapse">
         <ul class="navbar-nav me-auto">
           <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-              id="color"
-            >
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" id="color">
               Account
             </a>
             <ul class="dropdown-menu dropdown-menu-light">
-              <li>
-                <a class="dropdown-item" href="#" (click)="onLogout()"
-                  >Logout</a
-                >
-              </li>
+              <li><a class="dropdown-item" href="#" (click)="onLogout()">Logout</a></li>
             </ul>
           </li>
         </ul>
       </div>
     </button>
-  </mat-toolbar>
-</p>
+  </ng-container>
+</mat-toolbar>
+

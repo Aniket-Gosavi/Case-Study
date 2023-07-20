@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class AdminserviceService {
 
+  td:TrainDetails;
   id:any;
 
   constructor(private http: HttpClient) { }
@@ -17,6 +18,13 @@ export class AdminserviceService {
     this.id=ID;
   }
 
+  savetrain(td:TrainDetails){
+    this.td = td;
+  }
+
+  returntrain(){
+    return this.td;
+  }
   returnID(){
     return this.id;
   }
