@@ -7,5 +7,5 @@ import com.aniket.model.TrainDetails;
 
 @Repository
 public interface TrainRepo extends MongoRepository<TrainDetails, Integer>{
-	
+	TrainDetails findByTrainNo(int trainNo);
 }

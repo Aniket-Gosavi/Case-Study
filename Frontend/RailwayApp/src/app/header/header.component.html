@@ -20,6 +20,9 @@
         </ul>
       </div>
     </button>
+    &nbsp;
+    &nbsp;
+    <button  mat-raised-button color="primary" routerLink="">Home</button>
   </ng-container>
 
   <!-- Buttons for logged in -->
@@ -29,7 +32,7 @@
     <button mat-raised-button *ngIf="searchTrains" routerLink="/search">Search</button>
     <button mat-raised-button *ngIf="showTrain" routerLink="/show">Show</button>
     <button mat-raised-button *ngIf="book" routerLink="/book" class="book-button">Book</button>
-    <button mat-raised-button *ngIf="cancel" routerLink="/cancel">Cancel Booking</button>
+    <button mat-raised-button *ngIf="mybook" routerLink="/mybook">My Bookings</button>
     <span class="flex-spacer"></span> <!-- Add a flex spacer -->
 
     <button mat-raised-button>

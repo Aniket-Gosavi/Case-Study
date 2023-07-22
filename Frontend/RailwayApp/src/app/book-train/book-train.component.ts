@@ -36,11 +36,11 @@ export class BookTrainComponent {
 
   Add(){
     
-    if (this.bk.numberOfTravellers > 0) {
+    if (this.bk.numberOfTravellers > 1) {
       this.bk.passengers = [];
 
       // Create and store passenger details based on the number of travelers
-      for (let i = 0; i < this.bk.numberOfTravellers; i++) {
+      for (let i = 0; i < this.bk.numberOfTravellers - 1; i++) {
         this.bk.passengers.push({
           firstName: '',
           lastName: '',

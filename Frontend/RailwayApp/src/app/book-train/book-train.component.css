@@ -20,7 +20,8 @@
   }
   
   input[type="text"],
-  input[type="number"] {
+  input[type="number"],
+  select {
     width: 100%;
     padding: 12px;
     margin-bottom: 16px;

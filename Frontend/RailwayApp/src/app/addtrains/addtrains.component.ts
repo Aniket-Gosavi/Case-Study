@@ -20,6 +20,8 @@ export class AddtrainsComponent {
       console.log(data);
       alert("Train Details added successFully");
       this.router.navigate(['show'])
+  }, (error) => {
+    alert("Sorry but You Cannot Insert a duplicate Record");
   });
 }
 }

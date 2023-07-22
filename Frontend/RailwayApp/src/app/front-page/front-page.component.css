@@ -64,13 +64,6 @@ body {
     margin-bottom: 20px;
   }
   
-  footer {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-  }
-  
   .btn {
     display: inline-block;
     padding: 10px 20px;
@@ -79,3 +72,66 @@ body {
     text-decoration: none;
     border-radius: 5px;
   }
+
+/* Styling for the footer */
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 30px 0;
+}
+
+/* Center footer content */
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Styling for the footer logo */
+.footer-logo img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.footer-logo span {
+  font-size: 20px;
+}
+
+/* Styling for footer links */
+.footer-links {
+  margin-left: auto; /* Align links to the right */
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+.footer-links a:first-child {
+  margin-left: 0;
+}
+
+/* Styling for social media icons */
+.social-media a {
+  color: #fff;
+  font-size: 24px;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+/* Styling for social media icons on hover */
+.social-media a:hover {
+  color: #f5f5f5;
+}
+
+/* Styling for footer text */
+.footer-text {
+  margin: 10px 0 0;
+  text-align: center;
+  font-size: 14px;
+}

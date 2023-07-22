@@ -36,6 +36,7 @@ import { UpdatetrainComponent } from './updatetrain/updatetrain.component';
 import { BookTrainComponent } from './book-train/book-train.component';
 import { LoginErrorDialogComponent } from './login-error-dialog/login-error-dialog.component';
 import { BookreceiptComponent } from './bookreceipt/bookreceipt.component';
+import { ShowbookingsComponent } from './showbookings/showbookings.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { BookreceiptComponent } from './bookreceipt/bookreceipt.component';
     UpdatetrainComponent,
     BookTrainComponent,
     LoginErrorDialogComponent,
-    BookreceiptComponent
+    BookreceiptComponent,
+    ShowbookingsComponent
 
   ],
   imports: [

@@ -92,7 +92,7 @@ export class BookreceiptComponent {
   }
   processResponse(resp:any){
     console.log(resp);
-    this.router.navigate(['search'])
+    this.router.navigate(['mybook'])
   }
 
 }

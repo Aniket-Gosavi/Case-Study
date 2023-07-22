@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.aniket.exception.ResourceNotFoundException;
 import com.aniket.model.Booking;
@@ -53,6 +54,11 @@ public class BookingServiceImpl implements BookingService{
 	@Autowired
 	SequenceGeneratorService seq;
 	
+	@Autowired
+	RestTemplate rest;
+	
+	String email;
+	
 	@Override
 	public List<TrainDetails> showTrains() {
 		return trepo.findAll();
@@ -79,26 +85,33 @@ public class BookingServiceImpl implements BookingService{
 		}
 		return book;
 	}
+	
+	public List<Booking> showBookingByEmail(){
+		email = rest.getForObject("http://localhost:9098/api/auth/email", String.class);
+		List<Booking> book = brepo.findAllByEmail(email);
+		return book;
+	}
 
 
 	@Override
 	public Booking bookTrain(Booking book) {
 		TrainDetails traindetails = trepo.findByTrainNo(book.getTrainNo());
-		
+		email = rest.getForObject("http://localhost:9098/api/auth/email", String.class);
+		book.setEmail(email);
 		book.setId(seq.getSequenceNum(Booking.sequenceName));
 		double fair = traindetails.getFair();
 		Booking bk = brepo.save(book);
 		traindetails.setTicketsAvailable(traindetails.getTicketsAvailable() - book.getNumberOfTravellers());
 		trepo.save(traindetails);
-//		String body = "Hello "+book.getFirstName()+" "+book.getLastName()+" ,We have received your booking for ID:"+book.getId()+""
-//				+ "\n Boarding Station: "+traindetails.getBoardingStation()+""
-//				+ "\n Destination: "+traindetails.getDestination()+""
-//				+ "\n Train Name: "+traindetails.getName()+""+
-//				"\n Train Timing: "+traindetails.getTiming()+
-//				"\n Train Date: "+traindetails.getDate()+
-//				"\n Wishing you A Happy Journey Ahead";
-//		esi.sendSimpleMail(book.getEmail(), body, "Booking Details");
-//		log.info("Booking successfully done for ID"+book.getId());
+		String body = "Hello "+book.getFirstName()+" "+book.getLastName()+" ,We have received your booking for ID:"+book.getId()+""
+				+ "\n Boarding Station: "+traindetails.getBoardingStation()+""
+				+ "\n Destination: "+traindetails.getDestination()+""
+				+ "\n Train Name: "+traindetails.getName()+""+
+				"\n Train Timing: "+traindetails.getTiming()+
+				"\n Train Date: "+traindetails.getDate()+
+				"\n Wishing you A Happy Journey Ahead";
+		esi.sendSimpleMail(book.getEmail(), body, "Booking Details");
+		log.info("Booking successfully done for ID"+book.getId());
 		return bk;
 	}
 	

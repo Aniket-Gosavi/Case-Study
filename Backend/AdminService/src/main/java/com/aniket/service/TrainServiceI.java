@@ -6,7 +6,7 @@ import com.aniket.exception.ResourceNotFoundException;
 import com.aniket.model.TrainDetails;
 
 public interface TrainServiceI {
-	TrainDetails addTrain(TrainDetails td);
+	TrainDetails addTrain(TrainDetails td) throws ResourceNotFoundException;
 	List<TrainDetails> showTrains();
 	TrainDetails updateTrain(int trainNo, String destination) throws ResourceNotFoundException;
 	String deleteTrain(int id) throws ResourceNotFoundException;

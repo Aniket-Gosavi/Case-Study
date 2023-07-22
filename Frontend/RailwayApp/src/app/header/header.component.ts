@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   AddTrains = false;
   searchTrains = false;
   showTrain = false;
+  mybook = false;
   delete = false;
   book = false;
   cancel = false;
@@ -44,6 +45,7 @@ export class HeaderComponent implements OnInit {
       this.searchTrains = this.roles.includes('ROLE_USER');
       this.book = this.roles.includes('ROLE_USER');
       this.cancel = this.roles.includes('ROLE_USER');
+      this.mybook = this.roles.includes('ROLE_USER');
 
       this.username = user.username;
     }

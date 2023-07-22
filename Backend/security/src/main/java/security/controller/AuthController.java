@@ -56,6 +56,8 @@ public class AuthController {
 	@Autowired
 	UserDetailsServiceImpl userDetailsService;
 
+	private String email;
+	
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 		Authentication authentication = authenticationManager.authenticate(
@@ -63,11 +65,21 @@ public class AuthController {
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = jwtUtils.generateJwtToken(authentication);
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+		setEmail(userDetails.getEmail());
 		ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
 		List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
 				.collect(Collectors.toList());
 		return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString()).body(new UserInfoResponse(
 				userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles, jwt));
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	@GetMapping("/email")
+	public String getEmail() {
+		return email;
 	}
 
 	@PostMapping("/signup")

@@ -23,7 +23,7 @@ public class TrainController {
 	TrainServiceImpl ts;
 	
 	@PostMapping("/add")
-	public ResponseEntity<?> addTrain(@RequestBody TrainDetails td){
+	public ResponseEntity<?> addTrain(@RequestBody TrainDetails td)throws ResourceNotFoundException{
 		TrainDetails save = ts.addTrain(td);
 		return ResponseEntity.ok(save);
 	}

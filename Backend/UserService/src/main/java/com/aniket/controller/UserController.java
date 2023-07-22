@@ -86,4 +86,9 @@ public class UserController {
 	public TransactionDetails createTransaction(@PathVariable double amount) {
 		return bk.createTransaction(amount);
 	}
+	
+	@GetMapping("/findbyemail")
+	public ResponseEntity<?> showBookingByEmail() {
+		return ResponseEntity.ok(bk.showBookingByEmail());
+	}
 }

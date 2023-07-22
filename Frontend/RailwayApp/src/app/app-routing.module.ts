@@ -13,6 +13,7 @@ import { UpdatetrainComponent } from './updatetrain/updatetrain.component';
 import { BookTrainComponent } from './book-train/book-train.component';
 import { AuthguardService } from './services/authguard.service';
 import { BookreceiptComponent } from './bookreceipt/bookreceipt.component';
+import { ShowbookingsComponent } from './showbookings/showbookings.component';
 
 
 
@@ -27,7 +28,8 @@ const routes: Routes = [
   {path:"search",component:SearchtrainComponent,canActivate: [AuthguardService]},
   {path:"update",component:UpdatetrainComponent,canActivate: [AuthguardService]},
   {path:"book",component:BookTrainComponent,canActivate: [AuthguardService]},
-  {path:"receipt",component:BookreceiptComponent,canActivate: [AuthguardService]}
+  {path:"receipt",component:BookreceiptComponent,canActivate: [AuthguardService]},
+  {path:"mybook",component:ShowbookingsComponent,canActivate: [AuthguardService]}
 ];
 
 @NgModule({

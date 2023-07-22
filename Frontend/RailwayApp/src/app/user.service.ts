@@ -55,4 +55,12 @@ export class UserService {
   savebook(bk:any){
     return this.http.post("http://localhost:8002/savebook",bk);
   }
+
+  getEmail(){
+    return this.http.get("http://localhost:9098/api/auth/email");
+  }
+
+  getBooking(){
+    return this.http.get<Booking[]>("http://localhost:8002/findbyemail");
+  }
 }

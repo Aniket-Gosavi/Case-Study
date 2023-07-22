@@ -1,79 +1,84 @@
+/* Styling for the toolbar container */
 .mat-toolbar {
-    background-color: #2196f3;
-    color: white;
-  }
-  
-  .mat-toolbar a {
-    text-decoration: none;
-    color: white;
-  }
-  
-  .mat-toolbar button {
-    margin-left: 10px;
-  }
-  
-  .mat-toolbar button:hover {
-    background-color: #1976d2;
-  }
-  
-  .dropdown-menu {
-    background-color: #f8f9fa;
-  }
-  
-  .dropdown-item {
-    color: #212529;
-  }
-  
-  .dropdown-item:hover {
-    background-color: #e9ecef;
-    color: #212529;
-  }
-  
-  .dropdown-menu .dropdown-item:last-child {
-    color: #dc3545;
-  }
-  
-  .mat-icon {
-    margin-right: 5px;
-  }
-  
-  .navbar-collapse {
-    display: flex;
-    align-items: center;
-  }
-  
-  .navbar-nav {
-    margin-left: auto;
-  }
-  
-  #color {
-    color: #212529;
-  }
-  
-  .logo {
-    height: 24px;
-    margin-right: 8px;
-  }
-  
-  .logo-text {
-    color: white;
-    font-weight: bold;
-  }
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #1976d2; /* Primary color */
+}
 
-  .book-button {
-    background-color: #2196F3; /* Change this to the desired background color */
-    color: white; /* Change this to the desired text color */
-    font-size: 16px; /* Change this to the desired font size */
-    padding: 10px 20px; /* Change this to adjust the padding */
-    border-radius: 5px; /* Change this to adjust the button's border radius */
-  }
-  
-  .book-button:hover {
-    background-color: #0d47a1; /* Change this to the desired hover background color */
-    cursor: pointer;
-  }
+/* Styling for the logo image */
+.logo {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
 
-  .flex-spacer {
-    flex: 1;
-  }
-  
+/* Styling for the "Railway Reservation" text */
+.mat-toolbar span {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+/* Styling for the buttons in the toolbar */
+button.mat-raised-button {
+  margin-left: 10px;
+}
+
+/* Styling for the dropdown menu */
+.dropdown-menu {
+  background-color: #f5f5f5;
+}
+
+/* Styling for the dropdown items */
+.dropdown-item {
+  color: #333;
+}
+
+/* Styling for the account dropdown menu */
+#color {
+  color: white;
+}
+
+/* Styling for the flex spacer */
+.flex-spacer {
+  flex-grow: 1;
+}
+
+/* Additional styling for the buttons */
+button.mat-raised-button:hover {
+  background-color: #1565c0; /* Darker shade of primary color on hover */
+  color: white;
+}
+
+/* Styling for the "Book" button */
+.book-button {
+  background-color: #4caf50; /* Green color */
+}
+
+/* Additional styling for the navbar collapse */
+.navbar-collapse {
+  display: flex;
+  align-items: center;
+}
+
+/* Styling for the navbar links */
+.navbar-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  margin-right: 10px;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #f5f5f5; /* Lighter shade on hover */
+}
