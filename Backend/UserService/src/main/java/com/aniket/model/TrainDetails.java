@@ -30,8 +30,7 @@ public class TrainDetails {
 	private String boardingStation;
 	private String destination;
 	private String timing;
-	@JsonFormat(shape = JsonFormat.Shape.STRING)
-	private LocalDate date;
+	private String date;
 	private double fair;
     private int ticketsAvailable;
     

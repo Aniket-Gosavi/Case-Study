@@ -32,7 +32,7 @@ export class ShowbookingsComponent {
       console.log(data);
     })
     alert("Your Booking has been cancelled Successfully, You'll receive a confirmation mail for it ");
-    this.router.navigate(['mybook']);
+    window.location.reload();
   }
 
 }

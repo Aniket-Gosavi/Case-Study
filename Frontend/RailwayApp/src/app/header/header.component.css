@@ -1,84 +1,49 @@
-/* Styling for the toolbar container */
-.mat-toolbar {
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
-  background-color: #1976d2; /* Primary color */
+/* styles.css */
+
+/* Primary color for the toolbar background */
+mat-toolbar.color-primary {
+  background-color: #1976d2;
 }
 
-/* Styling for the logo image */
+/* Logo styles */
 .logo {
-  width: 40px;
   height: 40px;
   margin-right: 10px;
 }
 
-/* Styling for the "Railway Reservation" text */
-.mat-toolbar span {
-  font-size: 20px;
-  font-weight: bold;
+/* Centering the "Railway Reservation" text and changing its color to white */
+mat-toolbar span {
   color: white;
-}
-
-/* Styling for the buttons in the toolbar */
-button.mat-raised-button {
-  margin-left: 10px;
-}
-
-/* Styling for the dropdown menu */
-.dropdown-menu {
-  background-color: #f5f5f5;
-}
-
-/* Styling for the dropdown items */
-.dropdown-item {
-  color: #333;
-}
-
-/* Styling for the account dropdown menu */
-#color {
-  color: white;
-}
-
-/* Styling for the flex spacer */
-.flex-spacer {
-  flex-grow: 1;
-}
-
-/* Additional styling for the buttons */
-button.mat-raised-button:hover {
-  background-color: #1565c0; /* Darker shade of primary color on hover */
-  color: white;
-}
-
-/* Styling for the "Book" button */
-.book-button {
-  background-color: #4caf50; /* Green color */
-}
-
-/* Additional styling for the navbar collapse */
-.navbar-collapse {
   display: flex;
   align-items: center;
 }
 
-/* Styling for the navbar links */
-.navbar-nav {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+/* Flex spacer styles */
+.flex-spacer {
+  flex: 1;
 }
 
-.nav-item {
+/* Styles for the buttons */
+button.mat-raised-button {
   margin-right: 10px;
-}
-
-.nav-link {
   color: white;
-  text-decoration: none;
-  transition: color 0.3s;
 }
 
-.nav-link:hover {
-  color: #f5f5f5; /* Lighter shade on hover */
+/* Styles for the dropdown menu */
+.dropdown-menu {
+  background-color: #f0f0f0;
+}
+
+.dropdown-item {
+  color: #333;
+}
+
+/* On hover color for the dropdown items */
+.dropdown-item:hover {
+  background-color: #e0e0e0;
+}
+
+/* Account dropdown button color */
+button.mat-raised-button#color {
+  color: #333;
 }

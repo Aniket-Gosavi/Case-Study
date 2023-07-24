@@ -37,7 +37,7 @@ public void setUp() {
 }
 
 @Test
-public void testAddTrain() {
+public void testAddTrain() throws ResourceNotFoundException {
     TrainDetails trainDetails = new TrainDetails();
     when(sequenceGeneratorService.getSequenceNum(TrainDetails.sequenceName)).thenReturn(1);
     when(trainRepo.save(trainDetails)).thenReturn(trainDetails);

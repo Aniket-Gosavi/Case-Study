@@ -15,6 +15,9 @@ export class SearchtrainComponent {
 
   sourceName:any;
   destinationName:any;
+  date:any;
+
+  
   constructor(private user:UserService,
     private router:Router,
     private admin:AdminserviceService) { }
@@ -37,9 +40,12 @@ export class SearchtrainComponent {
   }
 
   searchData() {
-    this.user.searchTrain(this.sourceName,this.destinationName).subscribe(data => {
+    this.user.searchTrain(this.sourceName,this.destinationName,this.date).subscribe(data => {
       this.td = data;
       console.log(data);
+    }, (error) => {
+      alert("Sorry No Train Available")
+      window.location.reload();
     });
   }
 }

@@ -14,7 +14,7 @@ public interface BookingService {
 	Booking bookTrain(Booking book);
 	Booking showBookingById(int id)throws ResourceNotFoundException;
 	Booking showBookingByName(String name) throws ResourceNotFoundException;
-	List<TrainDetails> showBySourceAndDestination(String source,String destination) throws ResourceNotFoundException;
+	List<TrainDetails> showBySourceAndDestination(String source, String destination,String date) throws ResourceNotFoundException;
 	List<TrainDetails> showByDate(LocalDate date);
 	Booking cancelTicket(int id)throws ResourceNotFoundException;
 }

@@ -67,9 +67,9 @@ public class UserController {
 		return ResponseEntity.ok(bk.findByNo(tno));
 	}
 	
-	@GetMapping("/findbysourceanddestination/{source}/{destination}")
-	public ResponseEntity<?> findBySourceAndDestination(@PathVariable String source, @PathVariable String destination) throws ResourceNotFoundException {
-		return ResponseEntity.ok(bk.showBySourceAndDestination(source,destination));
+	@GetMapping("/findbysourceanddestination/{source}/{destination}/{date}")
+	public ResponseEntity<?> findBySourceAndDestination(@PathVariable String source, @PathVariable String destination, @PathVariable String date) throws ResourceNotFoundException {
+		return ResponseEntity.ok(bk.showBySourceAndDestination(source,destination,date));
 	}
 	
 	@GetMapping("/findbyDate/{date}")

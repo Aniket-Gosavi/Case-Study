@@ -1,38 +1,54 @@
 <br>
-<div class="container d-flex justify-content-center align-items-center vh-60"> 
-  <div class="form" style="border: 1px solid black; padding: 20px; max-width: 400px; background-color: #f7f7f7; border-radius: 10px;">
+<div class="container d-flex justify-content-center align-items-center vh-60">
+  <div class="form-container">
     <form #myForm="ngForm">
-      <h3 style="margin-bottom: 20px; font-weight: bold; color: #333;">Search Train</h3>
-      <label for="source" style="font-weight: bold;">Enter Source</label><br />
-      <input
-        type="text"
-        name="source"
-        id="source"
-        [(ngModel)]="sourceName"
-        required
-        #source="ngModel"
-        class="form-control"
-        style="border: 1px solid #ddd; border-radius: 5px; padding: 8px;"
-        [ngClass]="{ 'is-invalid': source.touched && source.errors }"
-      />
-      <small *ngIf="source.touched && source.errors && source.errors['required']" class="text-danger">Source is required</small>
-      <br>
-      <label for="destination" style="font-weight: bold;">Enter Destination</label><br />
-      <input
-        type="text"
-        name="destination"
-        id="destination"
-        [(ngModel)]="destinationName"
-        required
-        #destination="ngModel"
-        class="form-control"
-        style="border: 1px solid #ddd; border-radius: 5px; padding: 8px;"
-        [ngClass]="{ 'is-invalid': destination.touched && destination.errors }"
-      />
-      <small *ngIf="destination.touched && destination.errors && destination.errors['required']" class="text-danger">Destination is required</small>
-      <br>
-
-      <button mat-raised-button color="primary" (click)="searchData()" [disabled]="!myForm.valid" class="btn btn-primary" style="margin-top: 15px;">Search</button>
+      <h3>Search Train</h3>
+      <div class="row">
+        <div class="col">
+          <label for="source">Source</label><br />
+          <input
+            type="text"
+            name="source"
+            id="source"
+            [(ngModel)]="sourceName"
+            required
+            #source="ngModel"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': source.touched && source.errors }"
+          />
+          <small *ngIf="source.touched && source.errors && source.errors['required']" class="text-danger">Source is required</small>
+        </div>
+        <div class="col">
+          <label for="destination">Destination</label><br />
+          <input
+            type="text"
+            name="destination"
+            id="destination"
+            [(ngModel)]="destinationName"
+            required
+            #destination="ngModel"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': destination.touched && destination.errors }"
+          />
+          <small *ngIf="destination.touched && destination.errors && destination.errors['required']" class="text-danger">Destination is required</small>
+        </div>
+        <div class="col">
+          <label for="Date">Date</label><br />
+          <input
+            type="date"
+            name="Date"
+            id="Date"
+            [(ngModel)]="date"
+            required
+            #Date="ngModel"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': Date.touched && Date.errors }"
+            placeholder="YYYY-MM-DD"
+          />
+          <small *ngIf="Date.touched && Date.errors && Date.errors['required']" class="text-danger">Date is required</small>
+        </div>
+      </div>
+      <button mat-raised-button color="primary" (click)="searchData()" [disabled]="!myForm.valid" class="btn-search">Search</button>
     </form>
   </div>
 </div>

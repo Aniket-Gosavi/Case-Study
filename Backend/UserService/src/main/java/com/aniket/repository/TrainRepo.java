@@ -13,6 +13,6 @@ import com.aniket.model.TrainDetails;
 public interface TrainRepo extends MongoRepository<TrainDetails, Integer>{
 	
 	TrainDetails findByTrainNo(int trainNo);
-	List<TrainDetails> findByBoardingStationAndDestination(String boardingStation,String destination);
+	List<TrainDetails> findByBoardingStationAndDestinationAndDate(String boardingStation,String destination,String date);
 	List<TrainDetails> findByDate(LocalDate date);
 }

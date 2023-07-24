@@ -12,6 +12,8 @@
             <th>Email</th>
             <th>train No</th>
             <th>Total Travellers</th>
+            <th>Total Amount</th>
+            <th>Date Of Booking</th>
             <th>Action</th>  
           </tr>
         </thead>
@@ -23,6 +25,8 @@
             <td>{{t.email}}</td>
             <td>{{t.trainNo}}</td>
             <td>{{t.numberOfTravellers}}</td>
+            <td>{{t.amount}}</td>
+            <td>{{t.date}}</td>
             <td><button (click)="Cancel(t.id)" class="btn btn-warning" 
                 style="margin-left: 10px">Cancel</button></td>
           </tr>

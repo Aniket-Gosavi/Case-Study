@@ -32,7 +32,7 @@ public class TrainControllerTest {
     }
 
     @Test
-    public void testAddTrain() {
+    public void testAddTrain() throws ResourceNotFoundException {
         TrainDetails trainDetails = new TrainDetails();
         when(trainService.addTrain(trainDetails)).thenReturn(trainDetails);
 

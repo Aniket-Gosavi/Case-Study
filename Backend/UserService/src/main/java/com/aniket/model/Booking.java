@@ -1,5 +1,6 @@
 package com.aniket.model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -28,6 +29,8 @@ public class Booking {
 	private int trainNo;
 	@NotEmpty(message = "Travellers shoud not be empty")
 	private int numberOfTravellers;
+	private double amount;
+	private LocalDate date;
 	private List<Passengers> passList; 
 
 }

@@ -26,12 +26,14 @@ public class TrainServiceImpl implements TrainServiceI {
 	@Override
 	public TrainDetails addTrain(TrainDetails td) throws ResourceNotFoundException{
 		TrainDetails check = trepo.findByTrainNo(td.getTrainNo());
-		if(check.getTrainNo() == td.getTrainNo() || check.getBoardingStation() == td.getBoardingStation() || check.getDestination() == td.getDestination()) {
-			throw new ResourceNotFoundException("Cannot insert duplicate record");
+		if(check != null) {
+			if(check.getTrainNo() == td.getTrainNo() && check.getBoardingStation() == td.getBoardingStation() && check.getDestination() == td.getDestination()) {
+				throw new ResourceNotFoundException("Cannot insert duplicate record");
+			}
 		}
 		td.setId(seq.getSequenceNum(TrainDetails.sequenceName));
-	    TrainDetails traindetails = trepo.save(td);
-	    return td;
+		TrainDetails traindetails = trepo.save(td);
+		return td;
 	}
 	
 

@@ -59,6 +59,8 @@ public class BookingServiceImpl implements BookingService{
 	
 	String email;
 	
+	LocalDate ld;
+	
 	@Override
 	public List<TrainDetails> showTrains() {
 		return trepo.findAll();
@@ -100,6 +102,8 @@ public class BookingServiceImpl implements BookingService{
 		book.setEmail(email);
 		book.setId(seq.getSequenceNum(Booking.sequenceName));
 		double fair = traindetails.getFair();
+		book.setAmount(fair * book.getNumberOfTravellers());
+		book.setDate(ld.now());
 		Booking bk = brepo.save(book);
 		traindetails.setTicketsAvailable(traindetails.getTicketsAvailable() - book.getNumberOfTravellers());
 		trepo.save(traindetails);
@@ -137,9 +141,9 @@ public class BookingServiceImpl implements BookingService{
 	
 
 
-	@Override
-	public List<TrainDetails> showBySourceAndDestination(String source, String destination) throws ResourceNotFoundException{
-		List<TrainDetails> show = trepo.findByBoardingStationAndDestination(source, destination);
+
+	public List<TrainDetails> showBySourceAndDestination(String source, String destination,String date) throws ResourceNotFoundException{
+		List<TrainDetails> show = trepo.findByBoardingStationAndDestinationAndDate(source, destination,date);
 		if(show.isEmpty()) {
 			throw new ResourceNotFoundException("not found");
 		}
@@ -202,4 +206,5 @@ public class BookingServiceImpl implements BookingService{
 		TransactionDetails details = new TransactionDetails(orderId,currency,amount,KEY);
 		return details;
 	}
+
 }

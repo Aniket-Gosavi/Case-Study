@@ -43,8 +43,8 @@ export class UserService {
     return this.http.get("http://localhost:8002/findbyno/"+tno);
   }
 
-  searchTrain(source:any,destination:any){
-    return this.http.get<TrainDetails[]>("http://localhost:8002/findbysourceanddestination/"+source+"/"+destination);
+  searchTrain(source:any,destination:any,date:any){
+    return this.http.get<TrainDetails[]>("http://localhost:8002/findbysourceanddestination/"+source+"/"+destination+"/"+date);
   }
 
   bookTrain(bk:Booking){
