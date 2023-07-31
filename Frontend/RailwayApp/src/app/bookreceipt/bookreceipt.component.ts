@@ -13,6 +13,7 @@ declare var Razorpay:any;
 })
 export class BookreceiptComponent {
 
+  enable:boolean = false;
   num:any;
   bookingDetails: Booking; 
   id:any;
@@ -26,20 +27,6 @@ export class BookreceiptComponent {
 
     this.num = this.admin.returnID();
     this.num = this.num * this.bookingDetails.numberOfTravellers;
-    // console.log(this.admin.getById(this.admin.returnID()));
-    // if(this.bookingDetails.trainNo === 9713){
-    //   this.num = 400 * this.bookingDetails.numberOfTravellers;
-    // }else if(this.bookingDetails.trainNo === 9710){
-    //   this.num = 300 * this.bookingDetails.numberOfTravellers;
-    // }else if(this.bookingDetails.trainNo === 9012){
-    //   this.num = 180 * this.bookingDetails.numberOfTravellers;
-    // }else if(this.bookingDetails.trainNo === 9172){
-    //   this.num = 1200 * this.bookingDetails.numberOfTravellers;
-    // }else if(this.bookingDetails.trainNo === 7897){
-    //   this.num = 1200 * this.bookingDetails.numberOfTravellers;
-    // }else{
-    //   this.num = 350 * this.bookingDetails.numberOfTravellers;
-    // }
   }
 
   printReceipt(){
@@ -93,6 +80,7 @@ export class BookreceiptComponent {
   processResponse(resp:any){
     console.log(resp);
     this.router.navigate(['mybook'])
+    this.enable = true;
   }
 
 }

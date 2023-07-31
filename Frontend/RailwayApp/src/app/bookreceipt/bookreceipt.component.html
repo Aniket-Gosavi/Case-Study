@@ -6,5 +6,5 @@
   <p><strong>Number of Travellers:</strong> {{ bookingDetails.numberOfTravellers }}</p>
   <p><strong>Total Amount:</strong> {{ num }}</p>
   <button (click)="makePayment()">Make Payment</button>
-  <button (click)="printReceipt()">Print Receipt</button>
+  <button *ngIf = "enable" (click)="printReceipt()">Print Receipt</button>
 </div>

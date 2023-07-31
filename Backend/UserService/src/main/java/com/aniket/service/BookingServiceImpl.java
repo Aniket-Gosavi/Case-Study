@@ -31,9 +31,9 @@ import mailservice.EmailServiceImpl;
 @Service
 public class BookingServiceImpl implements BookingService{
 	
-	private static final String KEY = "rzp_test_XVCzdRPCKLbgBf";
-	
-	private static final String KEY_SECRET = "4QTS0RhqZAeVXUcFjWRlTshP";
+	private static final String KEY = "rzp_test_QwjbPSDd6ZRjgc";
+  
+  private static final String KEY_SECRET = "kiYJEofCoZ71bTHYBYgF9EO4";
 	
 	private static final String CURRENCY = "INR";
 	
